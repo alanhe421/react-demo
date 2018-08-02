@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import './helloworld.css';
+import Child from "./child";
 
 class HelloWorld extends Component {
     constructor(props) {
         super(props);
-        this.state = {greeting: 'Hello'};
+        this.state = {greeting: 'Hello', name: 'hello'};
         this.frenchify = this.frenchify.bind(this);
     }
 
@@ -12,10 +13,12 @@ class HelloWorld extends Component {
         return (<div className="HelloWorld">{this.state.greeting} {this.props.name}!!!
             <br/>
             <button onClick={this.frenchify}>Frenchify!</button>
+            <Child name={this.state.name}/>
         </div>);
     }
 
     frenchify() {
+        this.setState({name: '2123131'});
         this.setState({greeting: 'Bonjour'});
     }
 }
