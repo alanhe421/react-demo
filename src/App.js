@@ -8,9 +8,23 @@ import TodoComponent from "./Todo";
 class App extends Component {
     a = 1;
 
+    constructor(props) {
+        super(props);
+        this.state = {logs: [1, 2]};
+    }
+
+    componentDidMount() {
+        window.addEventListener('keypress', this.printKeyCode.bind(this));
+    }
+
     btnClicked() {
         localStorage.setItem('a', this.a);
-        alert(this.a);
+    }
+
+    printKeyCode(e) {
+        const logs = this.state.logs;
+        logs.push(e.keyCode);
+        this.setState({logs: logs});
     }
 
     render() {
@@ -33,9 +47,21 @@ class App extends Component {
                     {/*</Router>*/}
                     <Link to="/todo">Zillow Group</Link>
                     <button onClick={this.btnClicked.bind(this)}>点击我</button>
+                    <h3>
+                        按键历史
+                    </h3>
+                    <ul>
+                        {this.state.logs.map(it => {
+                            return <li>按键:{it}</li>
+                        })}
+                    </ul>
                 </div>
             </BrowserRouter>
         );
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keypress', this.printKeyCode);
     }
 }
 
