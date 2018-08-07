@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import HelloWorld from './helloworld';
 import './App.css';
-import {BrowserRouter, Link, Route} from 'react-router-dom'
+import {BrowserRouter, Link, Redirect, Route} from 'react-router-dom'
 import TodoComponent from "./Todo";
 
 class App extends Component {
@@ -10,7 +10,11 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {logs: [1, 2]};
+        this.state = {logs: [1, 2], redirect: false};
+        if (localStorage.getItem('a')) {
+            // 跳转到 /todo
+            
+        }
     }
 
     componentDidMount() {
@@ -19,6 +23,7 @@ class App extends Component {
 
     btnClicked() {
         localStorage.setItem('a', this.a);
+        this.setState({redirect: true});
     }
 
     printKeyCode(e) {
@@ -42,11 +47,12 @@ class App extends Component {
                     </div>
                     {/*<Router>*/}
                     {/*<a href="/todo">todo</a>*/}
+                    {this.redirectTodo()}
                     <Route path='/todo' component={TodoComponent}/>
                     {/*<Route path='/hello' component={TodoComponent}/>*/}
                     {/*</Router>*/}
                     <Link to="/todo">Zillow Group</Link>
-                    <button onClick={this.btnClicked.bind(this)}>点击我</button>
+                    <button onClick={this.btnClicked.bind(this)}>跳转</button>
                     <h3>
                         按键历史
                     </h3>
@@ -58,6 +64,13 @@ class App extends Component {
                 </div>
             </BrowserRouter>
         );
+    }
+
+
+    redirectTodo() {
+        if (this.state.redirect) {
+            return (<Redirect to="/todo"/>)
+        }
     }
 
     componentWillUnmount() {
