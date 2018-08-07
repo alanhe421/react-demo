@@ -2,9 +2,14 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import HelloWorld from './helloworld';
 import './App.css';
-import Video from "./video";
 
 class App extends Component {
+    a = 1;
+
+    btnClicked() {
+        alert(this.a);
+    }
+
     render() {
         return (
             <div className="App">
@@ -17,7 +22,14 @@ class App extends Component {
                     <HelloWorld name="dave"/>
                     To get started, edit <code>src/App.js</code> and save to reload.
                 </div>
-                <Video/>
+                {/*<Router>*/}
+                {/*<a href="/todo">todo</a>*/}
+                {/*<Route path='/todo' component={TodoComponent}/>*/}
+                {/*<Route path='/hello' component={TodoComponent}/>*/}
+                {/*</Router>*/}
+
+                <button onClick={this.btnClicked.bind(this)}>点击我</button>
+
             </div>
         );
     }
