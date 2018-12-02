@@ -1,12 +1,8 @@
-import {VisibilityFilters} from '../actions';
+import { combineReducers } from 'redux'
+import todos from './todos'
+import visibilityFilter from './visibilityFilter'
 
-const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
-    switch (action.type) {
-        case 'SET_VISIBILITY_FILTER':
-            return action.filter;
-        default:
-            return state;
-    }
-};
-
-export default visibilityFilter;
+export default combineReducers({
+    todos,
+    visibilityFilter
+})
