@@ -2,12 +2,28 @@ import React from 'react';
 import FilterLink from '../containers/FilterLink';
 import {VisibilityFilters} from '../actions';
 
-const Footer = () => (
-    <div>
-        <span>Show: </span>
-        <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-        <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-        <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
-    </div>
-);
+class Footer extends React.Component {
+
+
+    constructor(props, context) {
+        super(props, context);
+    }
+
+
+    sayHello(word) {
+
+    }
+
+    render() {
+        return (<div>
+            <span>Show: </span>
+            <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+            <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+            <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+            <div>
+                <button onClick={this.sayHello.bind(this, 'hello')}>click me</button>
+            </div>
+        </div>);
+    }
+}
 export default Footer;
