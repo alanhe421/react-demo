@@ -1,12 +1,13 @@
 import React from 'react';
-import {Route, Router} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import user from './components/user';
 
-import App from './components/App';
-
-const routes = () => (
-    <Router>
-        <Route path='/' component={App}/>
-    </Router>
+const Routes = () => (
+    <BrowserRouter>
+        <Switch>
+            <Route path='/user' component={user}/>
+        </Switch>
+    </BrowserRouter>
 );
 
-export default routes;
+export default Routes;

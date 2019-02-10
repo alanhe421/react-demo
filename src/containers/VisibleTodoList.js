@@ -13,17 +13,17 @@ const getVisibleTodos = (todos, filter) => {
         default:
             throw new Error('Unknown filter: ' + filter);
     }
-}
+};
 
 const mapStateToProps = state => ({
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
-})
+});
 
 const mapDispatchToProps = dispatch => ({
     toggleTodo: id => dispatch(toggleTodo(id))
-})
+});
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(TodoList)
+)(TodoList);

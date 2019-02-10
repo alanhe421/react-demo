@@ -4,12 +4,6 @@ import {VisibilityFilters} from '../actions';
 
 class Footer extends React.Component {
 
-
-    constructor(props, context) {
-        super(props, context);
-    }
-
-
     sayHello(word) {
 
     }
