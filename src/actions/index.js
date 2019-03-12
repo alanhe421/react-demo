@@ -24,3 +24,7 @@ export const setUserInfo = (user) => ({
     type: 'USER_FETCH_SUCCEEDED',
     ...user
 });
+export const setUserHistory = (history) => ({
+    type: 'USER_HISTORY_FETCH_SUCCEEDED',
+    history
+});

@@ -7,12 +7,13 @@ import rootReducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
 import mySaga from './effects/sagas';
 import Routes from './routes';
+import thunk from 'redux-thunk';
 
 export const sagaMiddleware = createSagaMiddleware();
 
-const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : f => f;
-const middlewares = [sagaMiddleware];
-const store = createStore(rootReducer, compose(applyMiddleware(...middlewares), reduxDevtools));
+const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
+const middleWares = [sagaMiddleware, thunk];
+const store = createStore(rootReducer, compose(applyMiddleware(...middleWares), reduxDevtools));
 
 sagaMiddleware.run(mySaga);
 
