@@ -2,34 +2,54 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchUserHistory} from '../effects/thunk';
 import {UserNote} from './user-note';
+import {NumberList} from './number-list/number-list';
 
 class user extends React.Component {
 
-    constructor(props) {
-        super(props);
-        // create a ref to store the textInput DOM element
-        this.textInput = React.createRef();
+    userNoteRef;
+
+
+    constructor(props, context) {
+        super(props, context);
+        this.userNoteRef = React.createRef();
+        this.state = {
+            count: 0
+        };
     }
 
-    focusTextInput = () => {
-        this.textInput.current.sayHello();
-    };
+    componentDidMount() {
+        this.props.getUserInfo();
+        this.props.getUserHistory();
+    }
+
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log(this.state);
+    }
 
     render() {
-        // tell React that we want to associate the <input> ref
-        // with the `textInput` that we created in the constructor
-        return (
-            <div>
-                <input
-                    type="button"
-                    value="Focus the text input"
-                    onClick={this.focusTextInput}
-                />
-                <UserNote ref={this.textInput}/>
-                <button onClick={this.focusTextInput}>call child event</button>
-            </div>
-        );
+        return <div>
+            <h1>{this.props.user.name}: {this.props.user.age}</h1>
+            <h1>{this.props.userHistory}: {JSON.stringify(this.props.userHistory)}</h1>
+            <h3>
+                描述:
+                {this.props.description}
+            </h3>
+            <button onClick={this.callUserNote}>
+                callUserNote
+            </button>
+            <UserNote ref={this.userNoteRef}/>
+            <NumberList numbers={[1, 2, 3, 4, 5]}/>
+        </div>;
+
     }
+
+    callUserNote = () => {
+        console.log(this.userNoteRef.current);
+        console.log(this.userNoteRef.current.sayHello);
+        this.setState({count: this.state.count + 1});
+        this.userNoteRef.current.sayHello();
+    };
 }
 
 const mapStateToProps = function (state) {
