@@ -61,6 +61,16 @@ address@1.0.3, address@^1.0.1:
   version "1.0.3"
   resolved "http://registry.npm.taobao.org/address/download/address-1.0.3.tgz#b5f50631f8d6cec8bd20c963963afb55e06cbce9"
 
+ag-grid-community@^21.0.1:
+  version "21.0.1"
+  resolved "https://registry.npm.taobao.org/ag-grid-community/download/ag-grid-community-21.0.1.tgz#8cf6096de7e9ae6144bf5aced89b03814ea7b034"
+
+ag-grid-react@^21.0.1:
+  version "21.0.1"
+  resolved "https://registry.npm.taobao.org/ag-grid-react/download/ag-grid-react-21.0.1.tgz#99cba1db66710d071e19870da64ffe89d5bd4dd9"
+  dependencies:
+    prop-types "^15.6.2"
+
 ajv-keywords@^2.0.0:
   version "2.1.1"
   resolved "http://registry.npm.taobao.org/ajv-keywords/download/ajv-keywords-2.1.1.tgz#617997fc5f60576894c435f940d819e135b80762"

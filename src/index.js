@@ -9,6 +9,9 @@ import mySaga from './effects/sagas';
 import Routes from './routes';
 import thunk from 'redux-thunk';
 
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+
 export const sagaMiddleware = createSagaMiddleware();
 
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
