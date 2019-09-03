@@ -24,7 +24,21 @@ export const setUserInfo = (user) => ({
     type: 'USER_FETCH_SUCCEEDED',
     ...user
 });
+
+export const setBooksInfo = (books) => ({
+    type: 'BOOKS_FETCH_SUCCEEDED',
+    books
+});
+
 export const setUserHistory = (history) => ({
     type: 'USER_HISTORY_FETCH_SUCCEEDED',
     history
+});
+
+export const testSaga = () => ({
+    type: 'TEST_SAGA'
+});
+
+export const fetchUserAction = () => ({
+    type: 'USER_FETCH'
 });

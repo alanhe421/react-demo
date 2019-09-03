@@ -12,17 +12,27 @@ import thunk from 'redux-thunk';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
-export const sagaMiddleware = createSagaMiddleware();
+export const sagaMiddleware = createSagaMiddleware({
+    onError: (e) => {
+        console.log('onError');
+        console.log(e);
+    }
+});
 
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
 const middleWares = [sagaMiddleware, thunk];
 const store = createStore(rootReducer, compose(applyMiddleware(...middleWares), reduxDevtools));
 
-sagaMiddleware.run(mySaga);
+sagaMiddleware.run(mySaga).toPromise()
+    .then(r => console.log(r))
+    .catch(e => () => {
+        console.error('sagaMiddleware try catch');
+        console.error(e);
+    });
 
 ReactDOM.render(
     <Provider store={store}>
-        <Routes />
+        <Routes/>
     </Provider>,
     document.getElementById('root')
 );

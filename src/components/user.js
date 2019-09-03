@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchUserHistory} from '../effects/thunk';
 import {UserNote} from './user-note';
 import {NumberList} from './number-list/number-list';
+import {fetchUserAction} from '../actions';
 
-class user extends React.Component {
+class userPage extends React.Component {
 
     userNoteRef;
-
 
     constructor(props, context) {
         super(props, context);
@@ -18,8 +17,7 @@ class user extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getUserInfo();
-        this.props.getUserHistory();
+        this.props.fetchUserAction();
     }
 
 
@@ -58,11 +56,8 @@ const mapStateToProps = function (state) {
         userHistory: state.userHistory
     };
 };
-const mapDispatchToProps = function (dispatch) {
-    return {
-        getUserInfo: () => dispatch({type: 'USER_FETCH'}),
-        getUserHistory: () => dispatch(fetchUserHistory())
-    };
+const mapDispatchToProps = {
+    fetchUserAction
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(user);
+export default connect(mapStateToProps, mapDispatchToProps)(userPage);

@@ -2,6 +2,8 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import user from './components/user';
 import {AgGridPage} from './components/ag-grid';
+import FormPage from './components/form/formPage';
+import SagaTestPage from './components/saga-test/saga-test-page';
 
 const description = 'hello world';
 const Routes = () => (
@@ -9,6 +11,8 @@ const Routes = () => (
         <Switch>
             <Route path='/user' component={user} description={description}/>
             <Route path='/ag-grid' component={AgGridPage}/>
+            <Route path='/form' component={FormPage}/>
+            <Route path='/saga' component={SagaTestPage}/>
         </Switch>
     </BrowserRouter>
 );
