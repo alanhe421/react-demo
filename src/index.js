@@ -8,6 +8,8 @@ import createSagaMiddleware from 'redux-saga';
 import mySaga from './effects/sagas';
 import Routes from './routes';
 import thunk from 'redux-thunk';
+import {createBrowserHistory} from 'history';
+import {routerMiddleware} from 'connected-react-router';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
@@ -18,10 +20,11 @@ export const sagaMiddleware = createSagaMiddleware({
         console.log(e);
     }
 });
+export const history = createBrowserHistory();
 
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
-const middleWares = [sagaMiddleware, thunk];
-const store = createStore(rootReducer, compose(applyMiddleware(...middleWares), reduxDevtools));
+const middleWares = [sagaMiddleware, thunk, routerMiddleware(history)];
+const store = createStore(rootReducer(history), compose(applyMiddleware(...middleWares), reduxDevtools));
 
 sagaMiddleware.run(mySaga).toPromise()
     .then(r => console.log(r))
