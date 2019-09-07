@@ -29,9 +29,9 @@ function* testSagaEffects2() {
 
 
 function* mySaga() {
-    yield takeEvery('USER_FETCH', fetchUserEffects);
+    yield takeEvery('USER_FETCH', safe(fetchUserEffects));
     yield takeEvery('TEST_SAGA', safe(testSagaEffects));
-    yield takeEvery('TEST_SAGA', testSagaEffects2);
+    yield takeEvery('TEST_SAGA', safe(testSagaEffects2));
 }
 
 export default mySaga;
