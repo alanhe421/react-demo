@@ -1,7 +1,6 @@
 import {call, delay, put, takeEvery} from 'redux-saga/effects';
 import {getBooks, getUserHistory, getUserInfo} from '../api';
 import {setBooksInfo} from '../actions';
-import {safe} from '../config/saga-middleware';
 
 function* fetchUserEffects() {
     console.log('fetchUserEffects');
@@ -11,7 +10,7 @@ function* fetchUserEffects() {
 }
 
 function* testSagaEffects() {
-    console.log('test saga');
+    console.log('test saga 1');
     const user = (yield call(getUserInfo)).data;
     console.log('step 1');
     const books = (yield call(getBooks)).data;
@@ -29,9 +28,9 @@ function* testSagaEffects2() {
 
 
 function* mySaga() {
-    yield takeEvery('USER_FETCH', safe(fetchUserEffects));
-    yield takeEvery('TEST_SAGA', safe(testSagaEffects));
-    yield takeEvery('TEST_SAGA', safe(testSagaEffects2));
+    yield takeEvery('USER_FETCH', fetchUserEffects);
+    yield takeEvery('TEST_SAGA', testSagaEffects);
+    yield takeEvery('TEST_SAGA', testSagaEffects2);
 }
 
 export default mySaga;

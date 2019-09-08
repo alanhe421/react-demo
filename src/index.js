@@ -13,12 +13,21 @@ import {routerMiddleware} from 'connected-react-router';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import {safe} from './config/saga-middleware';
+
+const effectMiddleware = next => effect => {
+    if (effect.type === 'FORK') {
+        effect.payload.args[1] = safe(effect.payload.args[1]);
+    }
+    return next(effect);
+};
 
 export const sagaMiddleware = createSagaMiddleware({
     onError: (e) => {
-        console.log('onError');
-        console.log(e);
-    }
+        console.error('onError');
+        console.error(e);
+    },
+    effectMiddlewares: [effectMiddleware]
 });
 export const history = createBrowserHistory();
 
