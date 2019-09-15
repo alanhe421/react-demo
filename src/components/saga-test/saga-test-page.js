@@ -1,20 +1,21 @@
 import React, {Component} from 'react';
-import {testSaga} from '../../actions';
+import {fetchUserAction, testSaga} from '../../actions';
 import {connect} from 'react-redux';
 
 class SagaTestPage extends Component {
 
     componentDidMount() {
-        this.props.testSaga();
+        // this.props.testSaga();
+        this.props.fetchUserAction();
     }
 
     render() {
         return (
-            <div>
+            <div style={{fontSize: 28}}>
                 SagaTest
                 {this.props.books.map(item => <h3 key={item.title}>{JSON.stringify(item)}</h3>)}
                 <div>
-                    hello world
+                    hello world-alan-2222
                 </div>
             </div>
         );
@@ -27,7 +28,10 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = {testSaga};
+const mapDispatchToProps = {
+    testSaga,
+    fetchUserAction
+};
 
 export default connect(
     mapStateToProps,
