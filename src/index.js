@@ -50,8 +50,6 @@ ReactDOM.render(
 );
 
 if (module.hot) {
-    // This is not a magic thing!
-    // You need to put whatever changes in *your* project here.
     module.hot.accept('./routes', () => {
         const nextRoutes = require('./routes').default; // Again, depends on your project
         ReactDOM.render(
