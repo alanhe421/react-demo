@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {fetchUserAction, testSaga} from '../../actions';
 import {connect} from 'react-redux';
+import {fetchUser} from '../../effects/thunk';
 
 class SagaTestPage extends Component {
 
     componentDidMount() {
-        // this.props.testSaga();
         this.props.fetchUserAction();
     }
 
@@ -17,6 +17,13 @@ class SagaTestPage extends Component {
                 <div>
                     hello world-alan-2222
                 </div>
+
+                <div>
+                    user info
+                </div>
+                <div>
+                    {JSON.stringify(this.props.user)}
+                </div>
             </div>
         );
     }
@@ -24,13 +31,15 @@ class SagaTestPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        books: state.books
+        books: state.books,
+        user: state.user
     };
 };
 
 const mapDispatchToProps = {
     testSaga,
-    fetchUserAction
+    fetchUserAction,
+    fetchUser
 };
 
 export default connect(

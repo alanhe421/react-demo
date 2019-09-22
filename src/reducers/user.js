@@ -1,9 +1,10 @@
 const user = (state = {
-    'name': 'xxx',
-    'age': 111
+    'name': null,
+    'age': null
 }, action) => {
     switch (action.type) {
         case 'USER_FETCH_SUCCEEDED':
+            console.log('Class: , Function: user, Line 7 (): ', action.user);
             return {
                 ...action.user
             };

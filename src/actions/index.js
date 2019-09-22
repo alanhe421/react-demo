@@ -22,7 +22,7 @@ export const VisibilityFilters = {
 };
 export const setUserInfo = (user) => ({
     type: 'USER_FETCH_SUCCEEDED',
-    ...user
+    user
 });
 
 export const setBooksInfo = (books) => ({

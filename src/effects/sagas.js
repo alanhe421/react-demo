@@ -1,10 +1,11 @@
-import {call, delay, put, takeEvery} from 'redux-saga/effects';
-import {getBooks, getUserHistory, getUserInfo} from '../api';
-import {setBooksInfo} from '../actions';
+import {call, delay, putResolve, put, select, takeEvery} from 'redux-saga/effects';
+import {getUserInfo} from '../api';
+import {fetchUser} from './thunk';
 
 function* fetchUserEffects() {
-    const user = (yield call(getUserInfo));
-    return user;
+    const user = (yield call(getUserInfo)).data;
+    yield put(fetchUser(user));
+    console.log('Class: fetchUserEffects, Function: fetchUserEffects, Line 8 yield select(): ', yield select(state => state.user));
 }
 
 function* testSagaEffects() {

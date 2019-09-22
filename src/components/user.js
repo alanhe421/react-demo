@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {UserNote} from './user-note';
 import {NumberList} from './number-list/number-list';
 import {fetchUserAction} from '../actions';
+import Link from '../containers/FilterLink';
 
 class userPage extends React.Component {
 
@@ -38,8 +39,8 @@ class userPage extends React.Component {
             </button>
             <UserNote ref={this.userNoteRef}/>
             <NumberList numbers={[1, 2, 3, 4, 5]}/>
+            <Link to={'/saga'}>saga</Link>
         </div>;
-
     }
 
     callUserNote = () => {

@@ -7,7 +7,7 @@ import rootReducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
 import mySaga from './effects/sagas';
 import Routes from './routes';
-import thunk from 'redux-thunk';
+import ThunkMiddleware from 'redux-thunk';
 import {createBrowserHistory} from 'history';
 import {routerMiddleware} from 'connected-react-router';
 
@@ -32,7 +32,9 @@ export const sagaMiddleware = createSagaMiddleware({
 export const history = createBrowserHistory();
 
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
-const middleWares = [sagaMiddleware, thunk, routerMiddleware(history)];
+
+const middleWares = [sagaMiddleware, ThunkMiddleware, routerMiddleware(history)];
+
 const store = createStore(rootReducer(history), compose(applyMiddleware(...middleWares), reduxDevtools));
 
 sagaMiddleware.run(mySaga).toPromise()
