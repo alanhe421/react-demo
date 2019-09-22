@@ -7,7 +7,7 @@ import rootReducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
 import mySaga from './effects/sagas';
 import Routes from './routes';
-import ThunkMiddleware from 'redux-thunk';
+import thunk from 'redux-thunk';
 import {createBrowserHistory} from 'history';
 import {routerMiddleware} from 'connected-react-router';
 
@@ -33,16 +33,11 @@ export const history = createBrowserHistory();
 
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
 
-const middleWares = [sagaMiddleware, ThunkMiddleware, routerMiddleware(history)];
+const middleWares = [sagaMiddleware, thunk, routerMiddleware(history)];
 
 const store = createStore(rootReducer(history), compose(applyMiddleware(...middleWares), reduxDevtools));
 
-sagaMiddleware.run(mySaga).toPromise()
-    .then(r => console.log(r))
-    .catch(e => () => {
-        console.error('sagaMiddleware try catch');
-        console.error(e);
-    });
+sagaMiddleware.run(mySaga);
 
 ReactDOM.render(
     <Provider store={store}>

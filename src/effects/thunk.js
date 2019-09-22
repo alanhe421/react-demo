@@ -1,8 +1,9 @@
-import {getUserHistory, getUserInfo} from '../api';
+import {getAddress, getUserHistory} from '../api';
+import {setUserInfo} from '../actions';
 
 export const fetchUserHistory = () => {
     return (dispatch) => {
-        getUserHistory()
+        return getUserHistory()
             .then((res) => {
                 const data = res.data;
                 dispatch('USER_HISTORY_FETCH_SUCCEEDED', data.history);
@@ -13,14 +14,12 @@ export const fetchUserHistory = () => {
     };
 };
 
-export const fetchUser = (user) => {
-    return (dispatch) => {
-        return getUserInfo()
-            .then((res) => {
-                dispatch('USER_FETCH_SUCCEEDED', user);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
+export const fetchUser = (user) => (dispatch) => {
+    getAddress()
+        .then((res) => {
+            dispatch(setUserInfo(user));
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 };

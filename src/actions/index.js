@@ -25,6 +25,12 @@ export const setUserInfo = (user) => ({
     user
 });
 
+export const setUserInfoAsync = (user) => ({
+    type: 'USER_FETCH_SUCCEEDED_ASYNC',
+    user
+});
+
+
 export const setBooksInfo = (books) => ({
     type: 'BOOKS_FETCH_SUCCEEDED',
     books
