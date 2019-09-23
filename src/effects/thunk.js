@@ -14,12 +14,8 @@ export const fetchUserHistory = () => {
     };
 };
 
-export const fetchUser = (user) => (dispatch) => {
+export const fetchUser = user => dispatch =>
     getAddress()
         .then((res) => {
             dispatch(setUserInfo(user));
-        })
-        .catch((error) => {
-            console.log(error);
         });
-};
