@@ -6,7 +6,8 @@
     "jquery": true
   },
   "plugins": [
-    "react"
+    "react",
+    "promise"
   ],
   "globals": {
     "__DEV__": true,
