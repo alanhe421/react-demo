@@ -243,7 +243,6 @@ module.exports = {
                         include: paths.appSrc,
                         loader: require.resolve('babel-loader'),
                         options: {
-
                             compact: true
                         }
                     },
