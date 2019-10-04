@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {AgGridReact} from 'ag-grid-react';
+import {appendPrefix} from '../../utils';
 
 export class AgGridPage extends React.Component {
 
@@ -35,6 +36,11 @@ export class AgGridPage extends React.Component {
                 columnDefs={this.state.columnDefs}
                 rowData={this.state.rowData}>
             </AgGridReact>
+            <div>
+                {
+                    appendPrefix('bob')
+                }
+            </div>
         </div>;
     }
 }

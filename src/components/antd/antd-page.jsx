@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from 'antd';
 import _ from 'lodash-es';
 import {getBooks} from '../../api';
+import {appendPrefix} from '../../utils';
 
 class AntdPage extends React.Component {
 
@@ -57,6 +58,11 @@ class AntdPage extends React.Component {
                 {
                     JSON.stringify(columns)
                 }
+                <div>
+                    {
+                        appendPrefix('bob')
+                    }
+                </div>
             </React.Fragment>
         );
     }
