@@ -14,7 +14,6 @@ import {routerMiddleware} from 'connected-react-router';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import {safe} from './config/saga-middleware';
-import 'antd/dist/antd.css';
 
 const effectMiddleware = next => effect => {
     if (effect.type === 'FORK') {

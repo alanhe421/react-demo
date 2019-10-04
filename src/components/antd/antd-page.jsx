@@ -1,8 +1,8 @@
 import React from 'react';
-import {Button} from 'antd';
-import _ from 'lodash-es';
+import {map} from 'lodash-es';
 import {getBooks} from '../../api';
 import {appendPrefix} from '../../utils';
+import {Button, Table} from 'antd';
 
 class AntdPage extends React.Component {
 
@@ -52,25 +52,34 @@ class AntdPage extends React.Component {
     };
 
     render() {
-        const columns = _.map(this.columns);
+        const columns = map(this.columns);
         return (
             <React.Fragment>
                 {
-                    JSON.stringify(columns)
+                    JSON.stringify(this.columns)
                 }
                 <div>
                     {
                         appendPrefix('bob')
                     }
                 </div>
+                <div>
+                    <Button type="primary">Primary</Button>
+                    <Button>Default</Button>
+                    <Button type="dashed">Dashed</Button>
+                    <Button type="danger">Danger</Button>
+                    <Button type="link">Link</Button>
+                </div>
+                {
+                    this.renderFooter()
+                }
             </React.Fragment>
         );
     }
 
     renderFooter = () => {
         return <React.Fragment>
-            <Button>btn 1</Button>
-            <Button>btn 2</Button>
+            <Table dataSource={[]} columns={this.columns}/>
         </React.Fragment>;
     };
 }
