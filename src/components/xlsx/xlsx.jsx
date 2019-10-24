@@ -13,16 +13,12 @@ class XlsxPage extends Component {
     }
 
     exportExcel() {
-        var ws_name = 'SheetJS';
-
-        /* make worksheet */
-        var ws_data = [
-            ['S', 'h', 'e', 'e', 't', 'J', 'S'],
-            [1, 2, 3, 4, 5]
+        const ws_name = 'SheetJS';
+        const ws_data = [
+            [1, 2, 3, {f: 'A1+B1+C1'}]
         ];
-        var ws = XLSX.utils.aoa_to_sheet(ws_data);
-        var wb = XLSX.utils.book_new();
-        /* Add the worksheet to the workbook */
+        const ws = XLSX.utils.aoa_to_sheet(ws_data);
+        const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, ws_name);
         XLSX.writeFile(wb, 'out.xlsx');
     }
