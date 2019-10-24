@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {UserNote} from './user-note';
 import {NumberList} from './number-list/number-list';
-import {fetchUserAction} from '../actions';
+import {fetchUserAction, updateUserAgeAction} from '../actions';
 import Link from '../containers/FilterLink';
 
 class userPage extends React.Component {
@@ -13,33 +13,30 @@ class userPage extends React.Component {
         super(props, context);
         this.userNoteRef = React.createRef();
         this.state = {
-            count: 0
+            count: 0,
+            numbers: [1, 2, 3, 4, 5]
         };
     }
 
     componentDidMount() {
-        this.props.fetchUserAction();
     }
 
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.state);
     }
 
     render() {
+        console.log('Class: userPage, Function: render, Line 28 111(): ', 111);
         return <div>
-            <h1>{this.props.user.name}: {this.props.user.age}</h1>
-            <h1>{this.props.userHistory}: {JSON.stringify(this.props.userHistory)}</h1>
-            <h3>
-                描述:
-                {this.props.description}
-            </h3>
+            <h1>age: {this.props.userAge}</h1>
             <button onClick={this.callUserNote}>
                 callUserNote
             </button>
             <UserNote ref={this.userNoteRef}/>
-            <NumberList numbers={[1, 2, 3, 4, 5]}/>
+            <NumberList numbers={this.state.numbers}/>
             <Link to={'/saga'}>saga</Link>
+            <button onClick={this.testRerender}>add user age</button>
+            <button onClick={this.addNumber}>addNumber</button>
         </div>;
     }
 
@@ -49,16 +46,26 @@ class userPage extends React.Component {
         this.setState({count: this.state.count + 1});
         this.userNoteRef.current.sayHello();
     };
+
+    testRerender = () => {
+        this.props.updateUserAgeAction();
+    };
+
+    addNumber = () => {
+        this.setState({
+            numbers: [...this.state.numbers, Math.random()]
+        });
+    };
 }
 
 const mapStateToProps = function (state) {
     return {
-        user: state.user,
-        userHistory: state.userHistory
+        userAge: state.user.age
     };
 };
 const mapDispatchToProps = {
-    fetchUserAction
+    fetchUserAction,
+    updateUserAgeAction
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(userPage);

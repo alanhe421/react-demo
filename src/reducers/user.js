@@ -1,13 +1,17 @@
 const user = (state = {
     'name': null,
-    'age': null
+    'age': 1
 }, action) => {
     switch (action.type) {
         case 'USER_FETCH_SUCCEEDED':
-            console.log('Class: , Function: user, Line 7 (): ', action.user);
             return {
                 ...action.user
             };
+        case 'UPDATE_USER_AGE':
+            return ({
+                ...state,
+                age: state.age + 1
+            });
         default:
             return state;
     }

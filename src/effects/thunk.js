@@ -7,6 +7,7 @@ export const fetchUserHistory = () => {
             .then((res) => {
                 const data = res.data;
                 dispatch('USER_HISTORY_FETCH_SUCCEEDED', data.history);
+                return data.history;
             })
             .catch((error) => {
                 console.log(error);

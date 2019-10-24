@@ -33,7 +33,7 @@ export const setUserInfoAsync = (user) => ({
 
 export const setBooksInfo = (books) => ({
     type: 'BOOKS_FETCH_SUCCEEDED',
-    books
+    payload: {books}
 });
 
 export const setUserHistory = (history) => ({
@@ -47,4 +47,9 @@ export const testSaga = () => ({
 
 export const fetchUserAction = () => ({
     type: 'USER_FETCH'
+});
+
+
+export const updateUserAgeAction = () => ({
+    type: 'UPDATE_USER_AGE'
 });

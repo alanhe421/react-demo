@@ -5,6 +5,8 @@ import {AgGridPage} from './components/ag-grid';
 import FormPage from './components/form/formPage';
 import SagaTestPage from './components/saga-test/saga-test-page';
 import AntdPage from './components/antd/antd-page';
+import ThunkPage from './components/thunk/thunk-page';
+import XlsxPage from './components/xlsx/xlsx';
 
 const description = 'hello world';
 const Routes = () => (
@@ -15,6 +17,8 @@ const Routes = () => (
             <Route path='/form' component={FormPage}/>
             <Route path='/saga' component={SagaTestPage}/>
             <Route path='/antd' component={AntdPage}/>
+            <Route path='/thunk' component={ThunkPage}/>
+            <Route path='/xlsx' component={XlsxPage}/>
         </Switch>
     </BrowserRouter>
 );
