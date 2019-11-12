@@ -1,29 +1,28 @@
 import React from 'react';
 import {Form} from 'antd/es';
 import Icon from 'antd/es/icon';
-import {Checkbox} from 'antd';
+import {Checkbox, InputNumber} from 'antd';
 import Input from 'antd/es/input';
 import Button from 'antd/es/button';
 
 class FormPage extends React.Component {
-    formRef = React.createRef();
-
     constructor(props) {
         super(props);
         this.state = {
-            disabled: true
+            disabled: true,
+            username: 'hhhhh'
         };
     }
 
     render() {
         const {getFieldDecorator} = this.props.form;
-
         return (
             <div>
                 <Form className="login-form">
                     <Form.Item>
                         {getFieldDecorator('username', {
-                            rules: [{required: true, message: 'Please input your username!'}]
+                            rules: [{required: true, message: 'Please input your username!'}],
+                            initialValue: this.state.username
                         })(
                             <Input
                                 prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>}
@@ -43,6 +42,22 @@ class FormPage extends React.Component {
                         )}
                     </Form.Item>
                     <Form.Item>
+                        {getFieldDecorator('progress', {
+                            rules: [],
+                            defaultValue: null
+                        })(
+                            <InputNumber min={0.5} max={10}
+                                         formatter={value => value + '%'} precision={2}
+                                         parser={value => {
+                                             if (value === null) {
+                                                 return value;
+                                             }
+                                             return Number(value.slice(0, -1));
+                                         }}
+                            />
+                        )}
+                    </Form.Item>
+                    <Form.Item>
                         {getFieldDecorator('remember', {
                             valuePropName: 'checked',
                             initialValue: true
@@ -58,12 +73,15 @@ class FormPage extends React.Component {
                 </Form>
 
                 <Button onClick={this.updateCheckboxDisabled}>update checkbox disabled status</Button>
+                <Button onClick={this.updateUsername}>update username</Button>
+                <Button onClick={this.onSubmit}>submit</Button>
             </div>
         );
     }
 
     onSubmit = () => {
-        this.formRef.current.submit();
+        console.log('Class: FormPage, Function: onSubmit, Line 83 this.props.form.getFieldsValue()(): ', this.props.form.getFieldsValue()['progress'].toFixed(2) + '%');
+        console.log('Class: FormPage, Function: onSubmit, Line 83 (): ', this.props.form.getFieldsValue());
     };
 
 
@@ -72,6 +90,13 @@ class FormPage extends React.Component {
             disabled: !this.state.disabled
         });
     };
+
+    updateUsername = () => {
+        this.setState({
+            username: Math.random()
+        });
+    };
+
 }
 
 export default Form.create()(FormPage);
