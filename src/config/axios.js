@@ -10,7 +10,7 @@ const onResponseError = err => {
   }
 
   if (status >= 500 || status === 400) {
-    alert('invalid request');
+    alert('[axios-global]invalid request');
   }
   return Window.Promise.reject(err);
 };

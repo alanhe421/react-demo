@@ -4,11 +4,10 @@ import { connect } from 'react-redux';
 import { fetchUser } from '../../effects/thunk';
 import { Button } from 'antd';
 
+let count = 0;
+
 class SagaTestPage extends Component {
 
-  componentDidMount() {
-    this.props.fetchUserAction();
-  }
 
   render() {
     return (
@@ -25,9 +24,13 @@ class SagaTestPage extends Component {
         <div>
           {JSON.stringify(this.props.user)}
         </div>
-        <Button onClick={()=>this.props.fetchUserAction()}>re fetch</Button>
+        <Button onClick={() => this.getFetchUserAction()}>re fetch</Button>
       </div>
     );
+  }
+
+  getFetchUserAction() {
+    return this.props.fetchUserAction(++count);
   }
 }
 

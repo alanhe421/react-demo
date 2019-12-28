@@ -1,41 +1,20 @@
-import { call, delay, put, putResolve, select } from 'redux-saga/effects';
-import { getUserInfo } from '../api';
-import { setUserInfo } from '../actions';
-import { fetchUser } from './thunk';
-import { takeLeading } from '@redux-saga/core/effects';
+import { call, delay, put } from 'redux-saga/effects';
+import { getUserHistory, getUserInfo } from '../api';
+import { setUserHistory, setUserInfoAsync } from '../actions';
+import { takeLatest } from '@redux-saga/core/effects';
 
-function* fetchUserEffects() {
-  console.log('Class: fetchUserEffects, Function: fetchUserEffects, Line 9 111(): ', 111);
-  const user = (yield call(getUserInfo)).data;
-  yield delay(3000);
-  yield putResolve(fetchUser(user));
-  console.log('Class: fetchUserEffects, Function: fetchUserEffects, Line 8 yield select(): ', yield select(state => state.user));
+function* fetchUserEffects(action) {
+  console.log(`这是第${action.payload.count}次`);
+  const userInfo = (yield call(getUserInfo)).data;
+  yield put(setUserInfoAsync(userInfo));
+  yield delay(1000);
 
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://mock-api.com/wz2wL5gL.mock/test/bad-request', true);
-  xhr.onload = e => {
-    console.log('Class: fetchUserEffects, Function: onload, Line 14 xhr.response(): ', xhr.response);
-  };
-  xhr.onerror = e => {
-    console.log('Class: fetchUserEffects, Function: onerror, Line 17 e(): ', e);
-  };
-  xhr.send();
-}
-
-function* fetchUserSuccessedEffects(action) {
-  yield put(setUserInfo(action.user));
-}
-
-
-function* testSagaEffects() {
-  console.log('test saga 1');
-  const user = (yield call(getUserInfo)).data;
-  return user;
+  const userHistory = (yield call(getUserHistory)).data;
+  yield put(setUserHistory(userHistory));
 }
 
 function* mySaga() {
-  yield takeLeading('USER_FETCH', fetchUserEffects);
-  yield takeLeading('USER_FETCH_SUCCEEDED_ASYNC', fetchUserSuccessedEffects);
+  yield takeLatest('USER_FETCH', fetchUserEffects);
 }
 
 export default mySaga;
