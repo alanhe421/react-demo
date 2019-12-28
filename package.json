@@ -6,7 +6,9 @@
     "build": "node scripts/build.js",
     "build:analyzer": "node scripts/build.js analyzer",
     "start": "node scripts/start.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "commit": "git-cz",
+    "release": "standard-version"
   },
   "babel": {
     "plugins": [
@@ -116,18 +118,33 @@
     "xlsx": "^0.15.1"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^8.2.0",
     "@pact-foundation/pact": "^9.1.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "commitizen": "^4.0.3",
+    "commitlint": "^8.2.0",
+    "cz-conventional-changelog": "^3.0.2",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "html-webpack-plugin": "4.0.0-beta.8",
     "react-hot-loader": "^4.12.13",
+    "semantic-release": "^15.13.31",
     "sw-precache-webpack-plugin": "0.11.4",
     "webpack": "4.41.0",
     "webpack-bundle-analyzer": "^3.5.0",
     "webpack-dev-server": "2.9.4",
     "webpack-manifest-plugin": "2.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "standard-version": {
+    "skip": {
+      "tag": true
+    }
   }
 }

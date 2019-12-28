@@ -34,3 +34,8 @@
 .width-500 {
     width: 500px;
 }
+
+
+.ant-select-tree-dropdown {
+    max-height: 400px !important;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {applyMiddleware, compose, createStore} from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import Provider from 'react-redux/es/components/Provider';
 import './App.css';
 import rootReducer from './reducers';
@@ -8,26 +8,29 @@ import createSagaMiddleware from 'redux-saga';
 import mySaga from './effects/sagas';
 import Routes from './routes';
 import thunk from 'redux-thunk';
-import {createBrowserHistory} from 'history';
-import {routerMiddleware} from 'connected-react-router';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import {safe} from './config/saga-middleware';
+import { safe } from './config/saga-middleware';
+import Promise from 'promise/lib/es6-extensions.js';
+window.Promise = Promise;
+import './config/axios';
 
 const effectMiddleware = next => effect => {
-    if (effect.type === 'FORK') {
-        effect.payload.args[1] = safe(effect.payload.args[1]);
-    }
-    return next(effect);
+  if (effect.type === 'FORK') {
+    effect.payload.args[1] = safe(effect.payload.args[1]);
+  }
+  return next(effect);
 };
 
 export const sagaMiddleware = createSagaMiddleware({
-    onError: (e) => {
-        console.error('onError');
-        console.error(e);
-    },
-    effectMiddlewares: [effectMiddleware]
+  onError: (e) => {
+    console.error('onError');
+    console.error(e);
+  },
+  effectMiddlewares: [effectMiddleware]
 });
 export const history = createBrowserHistory();
 
@@ -40,20 +43,20 @@ const store = createStore(rootReducer(history), compose(applyMiddleware(...middl
 sagaMiddleware.run(mySaga);
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Routes/>
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <Routes/>
+  </Provider>,
+  document.getElementById('root')
 );
 
 if (module.hot) {
-    module.hot.accept('./routes', () => {
-        const nextRoutes = require('./routes').default; // Again, depends on your project
-        ReactDOM.render(
-            <Provider store={store}>
-                <Routes/>
-            </Provider>,
-            document.getElementById('root')
-        );
-    });
+  module.hot.accept('./routes', () => {
+    const nextRoutes = require('./routes').default; // Again, depends on your project
+    ReactDOM.render(
+      <Provider store={store}>
+        <Routes/>
+      </Provider>,
+      document.getElementById('root')
+    );
+  });
 }
