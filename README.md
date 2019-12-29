@@ -2,6 +2,8 @@
 
 [TOC]: # " "
 
+- [Tech](#tech)
+- [Get started](#get-started)
 
 
 ## Tech

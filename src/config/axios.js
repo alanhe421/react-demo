@@ -6,8 +6,6 @@ const onResponseSuccess = response => {
 const onResponseError = err => {
   const config = err.config;
   const status = err.status || err.response.status;
-
-  console.log('Class: , Function: onResponseError, Line 10 (): ', config);
   if (status === 403 || status === 401) {
     alert('no auth');
   }
