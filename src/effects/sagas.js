@@ -1,5 +1,5 @@
 import { call, delay, put } from 'redux-saga/effects';
-import { getUserHistory, getUserInfo } from '../api';
+import { getBadRequest, getUserHistory, getUserInfo } from '../api';
 import { setUserHistory, setUserInfoAsync } from '../actions';
 import { takeLatest } from '@redux-saga/core/effects';
 
@@ -13,8 +13,18 @@ function* fetchUserEffects(action) {
   yield put(setUserHistory(userHistory));
 }
 
+
+function* testExceptionEffects() {
+  try {
+    yield call(getBadRequest);
+  } catch (e) {
+    console.error('saga exception');
+  }
+}
+
+
 function* mySaga() {
-  yield takeLatest('USER_FETCH', fetchUserEffects);
+  yield takeLatest('USER_FETCH', testExceptionEffects);
 }
 
 export default mySaga;
