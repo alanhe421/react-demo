@@ -6,7 +6,8 @@ import Button from 'antd/es/button';
 import Table from 'antd/es/table';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
-import { TreeSelect } from 'antd';
+import { Modal, Spin, TreeSelect } from 'antd';
+import moment from 'moment';
 
 class AntdPage extends React.Component {
 
@@ -60,6 +61,13 @@ class AntdPage extends React.Component {
     const columns = map(this.columns);
     return (
       <React.Fragment>
+        <Spin/>
+        <Modal visible={true}
+               title="Basic Modal">
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
         <div>
           {
             appendPrefix('bob')
