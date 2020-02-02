@@ -1,3 +1,5 @@
+import { createPromiseAction } from '@adobe/redux-saga-promise';
+
 let nextTodoId = 0;
 export const addTodo = text => ({
   type: 'ADD_TODO',
@@ -52,6 +54,8 @@ export const fetchUserAction = (count) => ({
   }
 });
 
+
+export const fetchUserAction2 = createPromiseAction('USER_FETCH', (count) => ({ count }));
 
 export const updateUserAgeAction = () => ({
   type: 'UPDATE_USER_AGE'

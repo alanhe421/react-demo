@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchUserAction, testSaga } from '../../actions';
+import { fetchUserAction2, testSaga } from '../../actions';
 import { connect } from 'react-redux';
 import { fetchUser } from '../../effects/thunk';
 import { Button } from 'antd';
@@ -15,10 +15,6 @@ class SagaTestPage extends Component {
         SagaTest
         {this.props.books.map(item => <h3 key={item.title}>{JSON.stringify(item)}</h3>)}
         <div>
-          hello world-alan-2222
-        </div>
-
-        <div>
           user info
         </div>
         <div>
@@ -29,8 +25,10 @@ class SagaTestPage extends Component {
     );
   }
 
-  getFetchUserAction() {
-    return this.props.fetchUserAction(++count);
+  async getFetchUserAction() {
+    const res = await this.props.fetchUserAction2(++count);
+    console.log(2);
+    return res;
   }
 }
 
@@ -43,7 +41,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   testSaga,
-  fetchUserAction,
+  fetchUserAction2,
   fetchUser
 };
 

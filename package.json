@@ -63,6 +63,7 @@
     ]
   },
   "dependencies": {
+    "@adobe/redux-saga-promise": "^1.0.0",
     "@babel/core": "7.6.0",
     "ag-grid-community": "^21.0.1",
     "ag-grid-react": "^21.0.1",

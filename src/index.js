@@ -15,8 +15,10 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import { safe } from './config/saga-middleware';
 import Promise from 'promise/lib/es6-extensions.js';
-window.Promise = Promise;
 import './config/axios';
+import { promiseMiddleware } from '@adobe/redux-saga-promise';
+
+window.Promise = Promise;
 
 const effectMiddleware = next => effect => {
   if (effect.type === 'FORK') {
@@ -36,7 +38,7 @@ export const history = createBrowserHistory();
 
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
 
-const middleWares = [sagaMiddleware, thunk, routerMiddleware(history)];
+const middleWares = [promiseMiddleware, sagaMiddleware, thunk, routerMiddleware(history)];
 
 const store = createStore(rootReducer(history), compose(applyMiddleware(...middleWares), reduxDevtools));
 
