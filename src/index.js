@@ -17,6 +17,8 @@ import { safe } from './config/saga-middleware';
 import Promise from 'promise/lib/es6-extensions.js';
 import './config/axios';
 import { promiseMiddleware } from '@adobe/redux-saga-promise';
+import * as moment from 'moment';
+import 'moment-timezone';
 
 window.Promise = Promise;
 
@@ -26,7 +28,6 @@ const effectMiddleware = next => effect => {
   }
   return next(effect);
 };
-
 export const sagaMiddleware = createSagaMiddleware({
   onError: (e) => {
     console.error('onError');
@@ -34,6 +35,7 @@ export const sagaMiddleware = createSagaMiddleware({
   },
   effectMiddlewares: [effectMiddleware]
 });
+
 export const history = createBrowserHistory();
 
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
@@ -41,8 +43,9 @@ const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTO
 const middleWares = [promiseMiddleware, sagaMiddleware, thunk, routerMiddleware(history)];
 
 const store = createStore(rootReducer(history), compose(applyMiddleware(...middleWares), reduxDevtools));
-
 sagaMiddleware.run(mySaga);
+
+moment.tz.setDefault('America/Jujuy');
 
 ReactDOM.render(
   <Provider store={store}>
