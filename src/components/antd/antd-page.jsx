@@ -82,14 +82,9 @@ class AntdPage extends React.Component {
           <Button type="danger">Danger</Button>
           <Button type="link">Link</Button>
         </div>
-
-        {
-          this.renderFooter()
-        }
         {
           this.renderTreeData()
         }
-        {this.renderForm()}
       </React.Fragment>
     );
   }
@@ -102,16 +97,16 @@ class AntdPage extends React.Component {
 
 
   renderTreeData() {
-    const tProps = {
+    const props = {
       treeData: this.state.treeData,
-      treeCheckable: false,
-      showCheckedStrategy: TreeSelect.SHOW_CHILD,
+      treeCheckable: true,
+      showCheckedStrategy: TreeSelect.SHOW_PARENT,
       searchPlaceholder: 'Please select',
       style: {
         width: '200px'
       }
     };
-    return <TreeSelect {...tProps} />;
+    return <TreeSelect {...props} />;
   }
 
   handleSubmit() {
