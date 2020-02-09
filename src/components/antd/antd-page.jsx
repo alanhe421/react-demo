@@ -6,8 +6,10 @@ import Button from 'antd/es/button';
 import Table from 'antd/es/table';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
-import { Modal, Spin, TreeSelect } from 'antd';
-import moment from 'moment';
+import { Checkbox, Modal, Spin, TreeSelect } from 'antd';
+import Form from 'antd/es/form';
+import Input from 'antd/es/input';
+import Icon from 'antd/es/icon';
 
 class AntdPage extends React.Component {
 
@@ -62,7 +64,7 @@ class AntdPage extends React.Component {
     return (
       <React.Fragment>
         <Spin/>
-        <Modal visible={true}
+        <Modal visible={false}
                title="Basic Modal">
           <p>Some contents...</p>
           <p>Some contents...</p>
@@ -87,6 +89,7 @@ class AntdPage extends React.Component {
         {
           this.renderTreeData()
         }
+        {this.renderForm()}
       </React.Fragment>
     );
   }
@@ -110,6 +113,63 @@ class AntdPage extends React.Component {
     };
     return <TreeSelect {...tProps} />;
   }
+
+  handleSubmit() {
+
+  }
+
+  onValuesChange(props, changedValues, allValues) {
+    console.log(changedValues);
+    console.log(allValues);
+  }
+
+  renderForm() {
+    const { getFieldDecorator } = this.props.form;
+    return <Form className="login-form">
+      <Form.Item>
+        {getFieldDecorator('username', {
+          rules: [
+            {
+              transform: value => value.trim()
+            }
+          ]
+        })(
+          <Input
+            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>}
+            placeholder="Username"
+          />
+        )}
+      </Form.Item>
+      <Form.Item>
+        {getFieldDecorator('password')(
+          <Input
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>}
+            type="password"
+            placeholder="Password"
+          />
+        )}
+      </Form.Item>
+      <Form.Item>
+        {getFieldDecorator('remember', {
+          valuePropName: 'checked',
+          initialValue: true
+        })(<Checkbox>Remember me</Checkbox>)}
+        <a className="login-form-forgot" href="">
+          Forgot password
+        </a>
+        <Button type="primary" htmlType="submit" className="login-form-button">
+          Log in
+        </Button>
+        Or <a href="">register now!</a>
+      </Form.Item>
+    </Form>;
+  }
 }
 
-export default AntdPage;
+export default Form.create(
+  {
+    onValuesChange: (props, changedValues, allValues) => {
+      console.log(changedValues);
+    }
+  }
+)(AntdPage);

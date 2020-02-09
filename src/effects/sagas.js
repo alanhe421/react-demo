@@ -1,16 +1,13 @@
 import { call } from 'redux-saga/effects';
 import { getBadRequest, getUserInfo } from '../api';
-import { takeLeading } from '@redux-saga/core/effects';
-import { fetchUserAction2 } from '../actions';
+import { delay, takeLatest, takeLeading } from '@redux-saga/core/effects';
+import { fetchUserAction, fetchUserAction2 } from '../actions';
 import { resolvePromiseAction } from '@adobe/redux-saga-promise';
 
 function* fetchUserEffects(action) {
+  console.log(action.payload.count);
   const userInfo = (yield call(getUserInfo)).data;
-  // yield put(setUserInfoAsync(userInfo));
-  // yield delay(1000);
-  //
-  // const userHistory = (yield call(getUserHistory)).data;
-  // yield put(setUserHistory(userHistory));
+  console.log(action.payload.count + 'end');
 }
 
 function sayHello() {
@@ -34,6 +31,7 @@ function* testExceptionEffects2(action) {
 
 function* mySaga() {
   yield takeLeading(fetchUserAction2, testExceptionEffects2);
+  yield takeLatest(fetchUserAction, fetchUserEffects);
 }
 
 export default mySaga;

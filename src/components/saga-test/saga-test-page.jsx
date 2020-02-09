@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { fetchUserAction2, testSaga } from '../../actions';
+import { fetchUserAction, testSaga } from '../../actions';
 import { connect } from 'react-redux';
-import { fetchUser } from '../../effects/thunk';
 import { Button } from 'antd';
 
 let count = 0;
@@ -25,10 +24,8 @@ class SagaTestPage extends Component {
     );
   }
 
-  async getFetchUserAction() {
-    const res = await this.props.fetchUserAction2(++count);
-    console.log(2);
-    return res;
+  getFetchUserAction() {
+    this.props.fetchUserAction(++count);
   }
 }
 
@@ -41,8 +38,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   testSaga,
-  fetchUserAction2,
-  fetchUser
+  fetchUserAction
 };
 
 export default connect(
