@@ -6,7 +6,7 @@ import Button from 'antd/es/button';
 import Table from 'antd/es/table';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
-import { Checkbox, Modal, Spin, TreeSelect } from 'antd';
+import { Modal, Spin, TreeSelect } from 'antd';
 import Form from 'antd/es/form';
 import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
@@ -83,7 +83,7 @@ class AntdPage extends React.Component {
           <Button type="link">Link</Button>
         </div>
         {
-          this.renderTreeData()
+          this.renderForm()
         }
       </React.Fragment>
     );
@@ -119,6 +119,16 @@ class AntdPage extends React.Component {
   }
 
   renderForm() {
+    const tProps = {
+      treeData: this.state.treeData,
+      treeCheckable: true,
+      showCheckedStrategy: TreeSelect.SHOW_PARENT,
+      searchPlaceholder: 'Please select',
+      style: {
+        width: '200px'
+      }
+    };
+
     const { getFieldDecorator } = this.props.form;
     return <Form className="login-form">
       <Form.Item>
@@ -145,17 +155,15 @@ class AntdPage extends React.Component {
         )}
       </Form.Item>
       <Form.Item>
-        {getFieldDecorator('remember', {
-          valuePropName: 'checked',
-          initialValue: true
-        })(<Checkbox>Remember me</Checkbox>)}
-        <a className="login-form-forgot" href="">
-          Forgot password
-        </a>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
-        </Button>
-        Or <a href="">register now!</a>
+        {getFieldDecorator('country', {
+          initialValue: [
+            'LI',
+            'AT',
+            'CH'
+          ]
+        })(
+          <TreeSelect {...tProps} />
+        )}
       </Form.Item>
     </Form>;
   }
