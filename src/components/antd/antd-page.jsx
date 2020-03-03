@@ -35,6 +35,7 @@ class AntdPage extends React.Component {
       books: [],
       visible: false
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -85,6 +86,7 @@ class AntdPage extends React.Component {
         {
           this.renderForm()
         }
+        <Button onClick={this.handleSubmit}>Submit</Button>
       </React.Fragment>
     );
   }
@@ -110,13 +112,21 @@ class AntdPage extends React.Component {
   }
 
   handleSubmit() {
-
+    let fieldsValue = this.props.form.getFieldsValue();
+    console.dir(fieldsValue);
   }
 
   onValuesChange(props, changedValues, allValues) {
     console.log(changedValues);
     console.log(allValues);
   }
+
+  renderItems() {
+    const numbers = [1, 2, 3, 4, null, null];
+    const items = numbers.map(i => i && <span key={i}>{String(i)}</span>);
+    return items;
+  }
+
 
   renderForm() {
     const tProps = {
@@ -157,9 +167,7 @@ class AntdPage extends React.Component {
       <Form.Item>
         {getFieldDecorator('country', {
           initialValue: [
-            'LI',
-            'AT',
-            'CH'
+            'LI'
           ]
         })(
           <TreeSelect {...tProps} />
