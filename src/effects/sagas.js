@@ -1,6 +1,6 @@
 import { call } from 'redux-saga/effects';
 import { getBadRequest, getUserInfo } from '../api';
-import { delay, takeLatest, takeLeading } from '@redux-saga/core/effects';
+import { takeLatest, takeLeading } from '@redux-saga/core/effects';
 import { fetchUserAction, fetchUserAction2 } from '../actions';
 import { resolvePromiseAction } from '@adobe/redux-saga-promise';
 
@@ -8,10 +8,11 @@ function* fetchUserEffects(action) {
   console.log(action.payload.count);
   const userInfo = (yield call(getUserInfo)).data;
   console.log(action.payload.count + 'end');
+  console.log(yield getNum());
 }
 
-function sayHello() {
-
+function* getNum() {
+  return yield 111;
 }
 
 function* testExceptionEffects() {

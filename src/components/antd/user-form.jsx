@@ -1,5 +1,6 @@
 import React from 'react';
-import { getBooks, getTreeData } from '../../api';
+import { getTreeData } from '../../api';
+import Button from 'antd/es/button';
 import Table from 'antd/es/table';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
@@ -7,9 +8,8 @@ import { TreeSelect } from 'antd';
 import Form from 'antd/es/form';
 import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
-import UserForm from './user-form';
 
-class AntdPage extends React.Component {
+class UserForm extends React.Component {
 
   columns = [
     {
@@ -30,24 +30,15 @@ class AntdPage extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      books: [],
-      visible: false,
-      num: 1
+      visible: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
-    const res = (await getBooks()).data;
     const res2 = (await getTreeData()).data;
-    this.setState({ treeData: res2, books: res });
+    this.setState({ treeData: res2 });
   }
-
-  toggleModal = () => {
-    this.setState({
-      visible: !this.state.visible
-    });
-  };
 
   handleCancel = () => {
     console.log('Class: AntdPage, Function: handleCancel, Line 43 (): ');
@@ -59,18 +50,13 @@ class AntdPage extends React.Component {
     this.toggleModal();
   };
 
-  handleBlur = (e) => {
-    this.setState({
-      num: e.target.value
-    });
-  };
-
   render() {
     return (
       <React.Fragment>
-        number: <Input onBlur={this.handleBlur}/>
-        <hr/>
-        <UserForm num={this.state.num}/>
+        {
+          this.renderForm()
+        }
+        <Button onClick={this.handleSubmit}>Submit</Button>
       </React.Fragment>
     );
   }
@@ -106,8 +92,10 @@ class AntdPage extends React.Component {
   }
 
 
-  componentWillReceiveProps(nextProps) {
-    console.dir(nextProps);
+  componentDidUpdate() {
+    // this.props.form && this.props.form.setFieldsValue({
+    //   age: this.props.num
+    // });
   }
 
   renderForm() {
@@ -138,6 +126,14 @@ class AntdPage extends React.Component {
         )}
       </Form.Item>
       <Form.Item>
+        {getFieldDecorator('age', {})(
+          <Input
+            prefix={<Icon style={{ color: 'rgba(0,0,0,.25)' }}/>}
+            placeholder="age"
+          />
+        )}
+      </Form.Item>
+      <Form.Item>
         {getFieldDecorator('password')(
           <Input
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>}
@@ -163,4 +159,4 @@ export default Form.create(
       console.log(changedValues);
     }
   }
-)(AntdPage);
+)(UserForm);

@@ -30,10 +30,16 @@ const effectMiddleware = next => effect => {
 };
 export const sagaMiddleware = createSagaMiddleware({
   onError: (e) => {
-    console.error('onError');
-    console.error(e);
   },
-  effectMiddlewares: [effectMiddleware]
+  effectMiddlewares: [effectMiddleware],
+  sagaMonitor: {
+    effectTriggered: e => {
+    },
+    effectRejected: (_0, result) => {
+    },
+    effectResolved: (_0, result) => {
+    }
+  }
 });
 
 export const history = createBrowserHistory();
