@@ -3,27 +3,44 @@ import { getBooks, getTreeData } from '../../api';
 import Table from 'antd/es/table';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
-import { TreeSelect } from 'antd';
+import { Button, TreeSelect } from 'antd';
 import Form from 'antd/es/form';
 import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
-import UserForm from './user-form';
 
 class AntdPage extends React.Component {
 
+  dataSource = [
+    {
+      id: '100',
+      name: 'Mike',
+      age: 32,
+      address: '10 Downing Street'
+    },
+    {
+      id: '101',
+      name: 'John',
+      age: 42,
+      address: '10 Downing Street'
+    }
+  ];
+
   columns = [
     {
-      title: 'title',
-      dataIndex: 'title',
-      width: 50
+      title: 'Name',
+      dataIndex: 'name'
     },
     {
-      title: 'price',
-      dataIndex: 'price'
+      title: 'Age',
+      dataIndex: 'age'
     },
     {
-      title: 'description',
-      dataIndex: 'description'
+      title: 'Address',
+      dataIndex: 'address'
+    },
+    {
+      title: 'action',
+      render: () => <Button>delete</Button>
     }
   ];
 
@@ -70,17 +87,10 @@ class AntdPage extends React.Component {
       <React.Fragment>
         number: <Input onBlur={this.handleBlur}/>
         <hr/>
-        <UserForm num={this.state.num}/>
+        <Table dataSource={this.dataSource} columns={this.columns} rowKey={'id'}/>
       </React.Fragment>
     );
   }
-
-  renderFooter = () => {
-    return <React.Fragment>
-      <Table dataSource={[]} columns={this.columns}/>
-    </React.Fragment>;
-  };
-
 
   renderTreeData() {
     const props = {
@@ -103,11 +113,6 @@ class AntdPage extends React.Component {
   onValuesChange(props, changedValues, allValues) {
     console.log(changedValues);
     console.log(allValues);
-  }
-
-
-  componentWillReceiveProps(nextProps) {
-    console.dir(nextProps);
   }
 
   renderForm() {

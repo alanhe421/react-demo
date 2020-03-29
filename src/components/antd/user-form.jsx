@@ -92,10 +92,11 @@ class UserForm extends React.Component {
   }
 
 
-  componentDidUpdate() {
-    // this.props.form && this.props.form.setFieldsValue({
-    //   age: this.props.num
-    // });
+  componentWillReceiveProps(nextProps) {
+    if (this.props.num !== nextProps.num)
+      this.props.form.setFieldsValue({
+        age: nextProps.num
+      });
   }
 
   renderForm() {
@@ -157,6 +158,7 @@ export default Form.create(
   {
     onValuesChange: (props, changedValues, allValues) => {
       console.log(changedValues);
+      console.log(props);
     }
   }
 )(UserForm);
