@@ -1,14 +1,23 @@
 {
   "name": "react-demo",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conventional-changelog/conventional-changelog.git"
+  },
   "scripts": {
     "build": "node scripts/build.js",
     "build:analyzer": "node scripts/build.js analyzer",
-    "start": "node scripts/start.js",
-    "test": "node scripts/test.js --env=jsdom",
     "commit": "git-cz",
-    "release": "standard-version"
+    "release": "standard-version",
+    "start": "node scripts/start.js",
+    "test": "node scripts/test.js --env=jsdom"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "babel": {
     "plugins": [
@@ -141,11 +150,6 @@
     "webpack-bundle-analyzer": "^3.5.0",
     "webpack-dev-server": "2.9.4",
     "webpack-manifest-plugin": "2.2.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "standard-version": {
     "skip": {
