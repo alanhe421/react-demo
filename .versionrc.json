@@ -36,7 +36,6 @@
       "hidden": true
     }
   ],
-  "user": "userUrlFormat",
   "issueUrlFormat": "https://1991421.cn/browse/TTT-{{id}}",
-  "userUrlFormat": "https://1991421.cn"
+  "userUrlFormat": "{{host}}/{{user}}"
 }
