@@ -5,9 +5,7 @@ import { fetchUserAction, fetchUserAction2 } from '../actions';
 import { resolvePromiseAction } from '@adobe/redux-saga-promise';
 
 function* fetchUserEffects(action) {
-  console.log(action.payload.count);
-  const userInfo = (yield call(getUserInfo)).data;
-  console.log(action.payload.count + 'end');
+  yield call(getUserInfo);
   console.log(yield getNum());
 }
 

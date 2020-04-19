@@ -1,5 +1,5 @@
 import React from 'react';
-import { getBooks, getTreeData } from '../../api';
+import { getBooks, getTreeData, getUserInfos } from '../../api';
 import Table from 'antd/es/table';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
@@ -9,21 +9,6 @@ import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
 
 class AntdPage extends React.Component {
-
-  dataSource = [
-    {
-      id: '100',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street'
-    },
-    {
-      id: '101',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street'
-    }
-  ];
 
   columns = [
     {
@@ -49,7 +34,8 @@ class AntdPage extends React.Component {
     this.state = {
       books: [],
       visible: false,
-      num: 1
+      num: 1,
+      userinfos: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -57,7 +43,8 @@ class AntdPage extends React.Component {
   async componentDidMount() {
     const res = (await getBooks()).data;
     const res2 = (await getTreeData()).data;
-    this.setState({ treeData: res2, books: res });
+    const res3 = (await getUserInfos()).data;
+    this.setState({ treeData: res2, books: res, userinfos: res3 });
   }
 
   toggleModal = () => {
@@ -87,7 +74,7 @@ class AntdPage extends React.Component {
       <React.Fragment>
         number: <Input onBlur={this.handleBlur}/>
         <hr/>
-        <Table dataSource={this.dataSource} columns={this.columns} rowKey={'id'}/>
+        <Table dataSource={this.state.userinfos} columns={this.columns} rowKey={'id'} rowSelection={{ type: 'radio' }}/>
       </React.Fragment>
     );
   }

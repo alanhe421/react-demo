@@ -13,14 +13,11 @@ import { routerMiddleware } from 'connected-react-router';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import { safe } from './config/saga-middleware';
-import Promise from 'promise/lib/es6-extensions.js';
 import './config/axios';
 import { promiseMiddleware } from '@adobe/redux-saga-promise';
 import * as moment from 'moment';
 import 'moment-timezone';
-
-window.Promise = Promise;
+import { safe } from './config/saga-middleware';
 
 const effectMiddleware = next => effect => {
   if (effect.type === 'FORK') {
@@ -30,6 +27,7 @@ const effectMiddleware = next => effect => {
 };
 export const sagaMiddleware = createSagaMiddleware({
   onError: (e) => {
+    console.log(e);
   },
   effectMiddlewares: [effectMiddleware],
   sagaMonitor: {
