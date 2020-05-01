@@ -10,24 +10,27 @@ import Icon from 'antd/es/icon';
 
 class AntdPage extends React.Component {
 
-  columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name'
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age'
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address'
-    },
-    {
-      title: 'action',
-      render: () => <Button>delete</Button>
-    }
-  ];
+  columns = () => {
+    return [
+      {
+        title: 'Name',
+        dataIndex: 'name'
+      },
+      {
+        title: 'Age',
+        dataIndex: 'age'
+      },
+      {
+        title: 'Address',
+        dataIndex: 'address'
+      },
+      {
+        title: 'action',
+        render: () => <Button>delete</Button>
+      }
+    ].filter(item => this.state.pass ? item.title !== 'action' : true);
+  };
+
 
   constructor(props, context) {
     super(props, context);
@@ -35,7 +38,8 @@ class AntdPage extends React.Component {
       books: [],
       visible: false,
       num: 1,
-      userinfos: []
+      userinfos: [],
+      pass: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -74,7 +78,9 @@ class AntdPage extends React.Component {
       <React.Fragment>
         number: <Input onBlur={this.handleBlur}/>
         <hr/>
-        <Table dataSource={this.state.userinfos} columns={this.columns} rowKey={'id'} rowSelection={{ type: 'radio' }}/>
+        <Table dataSource={this.state.userinfos} columns={this.columns()} rowKey={'id'}
+               rowSelection={{ type: 'radio' }}/>
+        <Button onClick={() => this.setState((pre) => ({ pass: !pre.pass }))}>toggle columns</Button>
       </React.Fragment>
     );
   }
@@ -100,6 +106,10 @@ class AntdPage extends React.Component {
   onValuesChange(props, changedValues, allValues) {
     console.log(changedValues);
     console.log(allValues);
+  }
+
+  deleteColumn() {
+
   }
 
   renderForm() {

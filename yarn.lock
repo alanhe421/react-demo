@@ -2437,6 +2437,13 @@ babel-plugin-macros@2.6.1:
     cosmiconfig "^5.2.0"
     resolve "^1.10.0"
 
+babel-plugin-redux-saga@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/babel-plugin-redux-saga/-/babel-plugin-redux-saga-1.1.2.tgz#367b4ad5ed5950918d6ed3bbf984944170fe7b6f"
+  integrity sha512-DfZ/SZzm62aDTjMya4s4yfuFMeKyJMdVlTcYDZnXsd8TmqLXKAEoi2biCzG1tNCIcXgr2V0O3qhTnU5LcygjSA==
+  dependencies:
+    source-map "^0.6.1"
+
 babel-plugin-syntax-async-functions@^6.8.0:
   version "6.13.0"
   resolved "https://registry.npm.taobao.org/babel-plugin-syntax-async-functions/download/babel-plugin-syntax-async-functions-6.13.0.tgz#cad9cad1191b5ad634bf30ae0872391e0647be95"

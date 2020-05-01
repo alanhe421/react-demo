@@ -17,27 +17,19 @@ import './config/axios';
 import { promiseMiddleware } from '@adobe/redux-saga-promise';
 import * as moment from 'moment';
 import 'moment-timezone';
-import { safe } from './config/saga-middleware';
 
 const effectMiddleware = next => effect => {
-  if (effect.type === 'FORK') {
-    effect.payload.args[1] = safe(effect.payload.args[1]);
-  }
+  // if (effect.type === 'FORK') {
+  //   effect.payload.args[1] = safe(effect.payload.args[1]);
+  // }
   return next(effect);
 };
 export const sagaMiddleware = createSagaMiddleware({
-  onError: (e) => {
-    console.log(e);
+  onError: (e, { sagaStack }) => {
+    console.error(e);
+    console.error(sagaStack);
   },
-  effectMiddlewares: [effectMiddleware],
-  sagaMonitor: {
-    effectTriggered: e => {
-    },
-    effectRejected: (_0, result) => {
-    },
-    effectResolved: (_0, result) => {
-    }
-  }
+  effectMiddlewares: [effectMiddleware]
 });
 
 export const history = createBrowserHistory();

@@ -5,11 +5,11 @@ import { fetchUserAction, fetchUserAction2 } from '../actions';
 import { resolvePromiseAction } from '@adobe/redux-saga-promise';
 
 function* fetchUserEffects(action) {
-  yield call(getUserInfo);
-  console.log(yield getNum());
+  yield* getNum();
 }
 
 function* getNum() {
+  console.log(a.b);
   return yield 111;
 }
 
