@@ -39,3 +39,18 @@
 .ant-select-tree-dropdown {
     max-height: 400px !important;
 }
+
+.ant-message-notice-content {
+    display: block;
+    padding: 10px 16px;
+    background: #b92121;
+    border: 1px solid black;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: all;
+    resize: both;
+    height: 200px;
+    width: 400px;
+    overflow: auto;
+}

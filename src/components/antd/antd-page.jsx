@@ -3,7 +3,7 @@ import { getBooks, getTreeData, getUserInfos } from '../../api';
 import Table from 'antd/es/table';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
-import { Button, TreeSelect } from 'antd';
+import { Button, message, TreeSelect } from 'antd';
 import Form from 'antd/es/form';
 import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
@@ -14,15 +14,18 @@ class AntdPage extends React.Component {
     return [
       {
         title: 'Name',
-        dataIndex: 'name'
+        dataIndex: 'name',
+        width: 500
       },
       {
         title: 'Age',
-        dataIndex: 'age'
+        dataIndex: 'age',
+        width: 500
       },
       {
         title: 'Address',
-        dataIndex: 'address'
+        dataIndex: 'address',
+        width: 500
       },
       {
         title: 'action',
@@ -49,6 +52,7 @@ class AntdPage extends React.Component {
     const res2 = (await getTreeData()).data;
     const res3 = (await getUserInfos()).data;
     this.setState({ treeData: res2, books: res, userinfos: res3 });
+    message.info('This is a normal message', 100000000);
   }
 
   toggleModal = () => {
@@ -78,8 +82,11 @@ class AntdPage extends React.Component {
       <React.Fragment>
         number: <Input onBlur={this.handleBlur}/>
         <hr/>
+        <div style={{ resize: 'both', border: '1px solid red', width: 200 }}>
+          hello world
+        </div>
         <Table dataSource={this.state.userinfos} columns={this.columns()} rowKey={'id'}
-               rowSelection={{ type: 'radio' }}/>
+               rowSelection={{ type: 'radio' }} scroll={{ x: 2000 }}/>
         <Button onClick={() => this.setState((pre) => ({ pass: !pre.pass }))}>toggle columns</Button>
       </React.Fragment>
     );
