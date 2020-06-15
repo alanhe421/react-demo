@@ -2,13 +2,22 @@ import React, { Component } from 'react';
 import { fetchUserAction, testSaga } from '../../actions';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
+import SagaChildren from './saga-children';
 
 let count = 0;
 
 class SagaTestPage extends Component {
 
 
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      number: 0
+    };
+  }
+
   render() {
+    console.log(this.state.number); // 0,0,1
     return (
       <div style={{ fontSize: 28 }}>
         SagaTest
@@ -19,13 +28,23 @@ class SagaTestPage extends Component {
         <div>
           {JSON.stringify(this.props.user)}
         </div>
-        <Button onClick={() => this.getFetchUserAction()}>re fetch</Button>
+        <Button onClick={() =>
+          this.props.fetchUserAction(++count)
+        }>test render{this.state.number}</Button>
+        <SagaChildren/>
       </div>
     );
   }
 
-  getFetchUserAction() {
+  componentDidMount() {
     this.props.fetchUserAction(++count);
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    console.log('componentWillReceiveProps');
+    this.setState({
+      number: this.state.number + 1
+    });
   }
 }
 

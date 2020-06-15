@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getUserInfo = () => axios.get('static/mock-data/userInfo.json11');
+export const getUserInfo = () => axios.get('static/mock-data/userInfo.json');
 
 export const getUserInfos = () => axios.get('static/mock-data/userInfo-list.json');
 

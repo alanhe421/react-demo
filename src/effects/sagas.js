@@ -1,11 +1,12 @@
-import { call } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 import { getBadRequest, getUserInfo } from '../api';
 import { takeLatest, takeLeading } from '@redux-saga/core/effects';
-import { fetchUserAction, fetchUserAction2 } from '../actions';
+import { fetchUserAction2, setUserInfo } from '../actions';
 import { resolvePromiseAction } from '@adobe/redux-saga-promise';
 
 function* fetchUserEffects(action) {
-  yield* getNum();
+  const userInfo = (yield call(getUserInfo)).data;
+  yield put(setUserInfo(userInfo));
 }
 
 function* getNum() {
@@ -30,7 +31,7 @@ function* testExceptionEffects2(action) {
 
 function* mySaga() {
   yield takeLeading(fetchUserAction2, testExceptionEffects2);
-  yield takeLatest(fetchUserAction, fetchUserEffects);
+  yield takeLatest('USER_FETCH', fetchUserEffects);
 }
 
 export default mySaga;
