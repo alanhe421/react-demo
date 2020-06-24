@@ -3,7 +3,7 @@ import { getBooks, getTreeData, getUserInfos } from '../../api';
 import Table from 'antd/es/table';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
-import { Button, message, TreeSelect } from 'antd';
+import { Button, TreeSelect } from 'antd';
 import Form from 'antd/es/form';
 import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
@@ -25,6 +25,7 @@ class AntdPage extends React.Component {
       {
         title: 'Address',
         dataIndex: 'address',
+        align: 'left',
         width: 500
       },
       {
@@ -52,7 +53,6 @@ class AntdPage extends React.Component {
     const res2 = (await getTreeData()).data;
     const res3 = (await getUserInfos()).data;
     this.setState({ treeData: res2, books: res, userinfos: res3 });
-    message.info('This is a normal message', 100000000);
   }
 
   toggleModal = () => {
