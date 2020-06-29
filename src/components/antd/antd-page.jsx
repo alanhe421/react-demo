@@ -25,7 +25,7 @@ class AntdPage extends React.Component {
       {
         title: 'Address',
         dataIndex: 'address',
-        align: 'left',
+        align: 'center',
         width: 500
       },
       {
@@ -88,6 +88,9 @@ class AntdPage extends React.Component {
         <Table dataSource={this.state.userinfos} columns={this.columns()} rowKey={'id'}
                rowSelection={{ type: 'radio' }} scroll={{ x: 2000 }}/>
         <Button onClick={() => this.setState((pre) => ({ pass: !pre.pass }))}>toggle columns</Button>
+        <a href={'/static/mock-data/snapshot1.png'} download={'newname'}>
+          click it
+        </a>
       </React.Fragment>
     );
   }
