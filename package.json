@@ -102,6 +102,7 @@
     "eslint-plugin-react": "7.15.1",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
+    "husky": "^4.2.5",
     "jest": "24.9.0",
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",

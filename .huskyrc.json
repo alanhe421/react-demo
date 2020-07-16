@@ -1,0 +1,6 @@
+{
+  "hooks": {
+    "post-merge": "yarn",
+    "post-checkout": "yarn"
+  }
+}

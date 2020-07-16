@@ -7,6 +7,7 @@ import { Button, TreeSelect } from 'antd';
 import Form from 'antd/es/form';
 import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
+import Search from 'antd/es/input/Search';
 
 class AntdPage extends React.Component {
 
@@ -80,6 +81,13 @@ class AntdPage extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Search
+          placeholder="input search text"
+          allowClear
+          onSearch={(value, e) => console.log(value, e)}
+          style={{ width: 200 }}
+          enterButton
+        />
         number: <Input onBlur={this.handleBlur}/>
         <hr/>
         <div style={{ resize: 'both', border: '1px solid red', width: 200 }}>
