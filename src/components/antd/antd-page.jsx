@@ -1,13 +1,18 @@
 import React from 'react';
 import { getBooks, getTreeData, getUserInfos } from '../../api';
-import Table from 'antd/es/table';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
-import { Button, TreeSelect } from 'antd';
+import { Button, Select, TreeSelect } from 'antd';
 import Form from 'antd/es/form';
 import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
-import Search from 'antd/es/input/Search';
+
+const { Option } = Select;
+
+const children = [];
+for (let i = 10; i < 36; i++) {
+  children.push(<Option key={i.toString(36) + i}>{i.toString(36).repeat(30) + i}</Option>);
+}
 
 class AntdPage extends React.Component {
 
@@ -81,24 +86,11 @@ class AntdPage extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Search
-          placeholder="input search text"
-          allowClear
-          onSearch={(value, e) => console.log(value, e)}
-          style={{ width: 200 }}
-          enterButton
-        />
-        number: <Input onBlur={this.handleBlur}/>
-        <hr/>
-        <div style={{ resize: 'both', border: '1px solid red', width: 200 }}>
-          hello world
+        <div>
+          <Select mode="tags" style={{ width: '200px' }} placeholder="Tags Mode">
+            {children}
+          </Select>
         </div>
-        <Table dataSource={this.state.userinfos} columns={this.columns()} rowKey={'id'}
-               rowSelection={{ type: 'radio' }} scroll={{ x: 2000 }}/>
-        <Button onClick={() => this.setState((pre) => ({ pass: !pre.pass }))}>toggle columns</Button>
-        <a href={'/static/mock-data/snapshot1.png'} download={'newname'}>
-          click it
-        </a>
       </React.Fragment>
     );
   }
