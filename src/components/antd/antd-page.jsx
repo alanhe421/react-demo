@@ -6,6 +6,7 @@ import { Button, Select, Tooltip, TreeSelect } from 'antd';
 import Form from 'antd/es/form';
 import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
+import { CustomSelect } from './custom-select';
 
 const { Option } = Select;
 
@@ -92,9 +93,9 @@ class AntdPage extends React.Component {
     return (
       <React.Fragment>
         <div>
-          <Select mode="tags" style={{ width: '200px' }} placeholder="Tags Mode" showArrow open autoFocus>
+          <CustomSelect mode="tags" style={{ width: '200px' }} placeholder="Tags Mode" showArrow open autoFocus>
             {children}
-          </Select>
+          </CustomSelect>
         </div>
       </React.Fragment>
     );
