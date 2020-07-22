@@ -2,7 +2,7 @@ import React from 'react';
 import { getBooks, getTreeData, getUserInfos } from '../../api';
 import 'antd/es/button/style/css';
 import 'antd/es/table/style/css';
-import { Button, Select, TreeSelect } from 'antd';
+import { Button, Select, Tooltip, TreeSelect } from 'antd';
 import Form from 'antd/es/form';
 import Input from 'antd/es/input';
 import Icon from 'antd/es/icon';
@@ -11,7 +11,12 @@ const { Option } = Select;
 
 const children = [];
 for (let i = 10; i < 36; i++) {
-  children.push(<Option key={i.toString(36) + i}>{i.toString(36).repeat(30) + i}</Option>);
+  children.push(<Option key={i.toString(36) + i}>
+    <Tooltip placement="topRight" title={i.toString(36).repeat(30) + i} arrowPointAtCenter
+             overlayClassName={'custom-tooltip'}>
+      {i.toString(36).repeat(30) + i}
+    </Tooltip>
+  </Option>);
 }
 
 class AntdPage extends React.Component {
@@ -87,7 +92,7 @@ class AntdPage extends React.Component {
     return (
       <React.Fragment>
         <div>
-          <Select mode="tags" style={{ width: '200px' }} placeholder="Tags Mode">
+          <Select mode="tags" style={{ width: '200px' }} placeholder="Tags Mode" showArrow open autoFocus>
             {children}
           </Select>
         </div>

@@ -54,3 +54,8 @@
     width: 400px;
     overflow: auto;
 }
+
+.custom-tooltip .ant-tooltip-inner {
+    color: white;
+    background-color: #108ee9;
+}
