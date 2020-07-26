@@ -14,7 +14,8 @@
     "commit": "git-cz",
     "release": "standard-version",
     "start": "node scripts/start.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "preinstall": "node ./scripts/checkYarn.js"
   },
   "config": {
     "commitizen": {
