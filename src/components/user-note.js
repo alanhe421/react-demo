@@ -1,19 +1,20 @@
 import React from 'react';
 
-export class UserNote extends React.Component {
+export class UserNote extends React.PureComponent {
 
 
-    constructor(props, context) {
-        super(props, context);
-    }
+  constructor(props, context) {
+    super(props, context);
+  }
 
-    sayHello() {
-        alert('I am note!');
-    }
+  sayHello() {
+    alert('I am note!');
+  }
 
-    render() {
-        return (
-            <textarea placeholder={'write something'}>
+  render() {
+    console.log('UserNote');
+    return (
+      <textarea placeholder={'write something'}>
         </textarea>);
-    }
+  }
 }
