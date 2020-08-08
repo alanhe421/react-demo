@@ -92,7 +92,7 @@ class AntdPage extends React.Component {
         <div>
           <CustomSelect autoTooltip mode="tags" style={{ width: '200px' }} placeholder="Tags Mode" showArrow open
                         autoFocus>
-            {children}111111
+            {children}22222
           </CustomSelect>
         </div>
       </React.Fragment>
