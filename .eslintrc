@@ -87,8 +87,7 @@
     ],
     "guard-for-in": 0,
     "handle-callback-err": [
-      2,
-      "^(err|error)$"
+      0
     ],
     "indent": 0,
     "key-spacing": [
@@ -255,7 +254,7 @@
       }
     ],
     "spaced-comment": [
-      2,
+      "off",
       "always",
       {
         "markers": [

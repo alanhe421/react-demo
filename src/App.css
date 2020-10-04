@@ -59,3 +59,16 @@
     color: white;
     background-color: #108ee9;
 }
+
+main {
+    display: flex !important;
+    min-height: 100vh;
+}
+
+main > nav {
+    background-color: #7f8c8d;
+}
+
+main > * {
+
+}

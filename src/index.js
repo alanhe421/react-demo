@@ -10,13 +10,14 @@ import Routes from './routes';
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
-
+import 'regenerator-runtime';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import './config/axios';
 import { promiseMiddleware } from '@adobe/redux-saga-promise';
 import * as moment from 'moment';
 import 'moment-timezone';
+import ErrorBoundary from './components/base/error-boundary';
 
 const effectMiddleware = next => effect => {
   // if (effect.type === 'FORK') {
@@ -43,21 +44,27 @@ sagaMiddleware.run(mySaga);
 
 moment.tz.setDefault('America/Jujuy');
 
-ReactDOM.render(
+const render = (root) => ReactDOM.render(
   <Provider store={store}>
-    <Routes/>
+    <main>
+      <nav>
+        menu list
+      </nav>
+      <div>
+        <ErrorBoundary>
+          <Routes/>
+        </ErrorBoundary>
+      </div>
+    </main>
   </Provider>,
-  document.getElementById('root')
+  root
 );
+
+render(document.getElementById('root'));
 
 if (module.hot) {
   module.hot.accept('./routes', () => {
     const nextRoutes = require('./routes').default; // Again, depends on your project
-    ReactDOM.render(
-      <Provider store={store}>
-        <Routes/>
-      </Provider>,
-      document.getElementById('root')
-    );
+    render(nextRoutes);
   });
 }

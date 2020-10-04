@@ -5,6 +5,7 @@ import { Checkbox, InputNumber } from 'antd';
 import Input from 'antd/es/input';
 import Button from 'antd/es/button';
 import OperationDisabled from '../operation-disabled';
+import Select from 'antd/es/select';
 
 class FormPage extends React.Component {
   constructor(props) {
@@ -76,6 +77,24 @@ class FormPage extends React.Component {
               </Button>
               Or <a href="">register now!</a>
             </Form.Item>
+
+            <Form.Item>
+              {getFieldDecorator('location', {
+                rules: [{ required: true, message: 'Please input your location' }],
+                initialValue: null
+              })(
+                <Select style={{ width: 120 }}>
+                  <Select.Option value={null}>null</Select.Option>
+                  <Select.Option value="jack">Jack</Select.Option>
+                  <Select.Option value="lucy">Lucy</Select.Option>
+                  <Select.Option value="disabled">
+                    Disabled
+                  </Select.Option>
+                  <Select.Option value="Yiminghe">yiminghe</Select.Option>
+                </Select>
+              )}
+            </Form.Item>
+
           </Form></OperationDisabled>
 
         <Button onClick={this.updateCheckboxDisabled}>update checkbox disabled status</Button>
@@ -86,8 +105,7 @@ class FormPage extends React.Component {
   }
 
   onSubmit = () => {
-    console.log('Class: FormPage, Function: onSubmit, Line 83 this.props.form.getFieldsValue()(): ', this.props.form.getFieldsValue()['progress'].toFixed(2) + '%');
-    console.log('Class: FormPage, Function: onSubmit, Line 83 (): ', this.props.form.getFieldsValue());
+    this.props.form.validateFields();
   };
 
 

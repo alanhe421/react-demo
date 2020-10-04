@@ -10,19 +10,22 @@ import XlsxPage from './components/xlsx/xlsx';
 import HomePage from './components/home/home';
 
 const description = 'hello world';
-const Routes = () => (
-  <BrowserRouter>
-    <Switch>
-      <Route path='/user' component={user} description={description}/>
-      <Route path='/ag-grid' component={AgGridPage}/>
-      <Route path='/form' component={FormPage}/>
-      <Route path='/saga' component={SagaTestPage}/>
-      <Route path='/antd' component={AntdPage}/>
-      <Route path='/thunk' component={ThunkPage}/>
-      <Route path='/xlsx' component={XlsxPage}/>
-      <Route path='/' component={HomePage}/>
-    </Switch>
-  </BrowserRouter>
-);
+const Routes = () => {
+  console.log('normal');
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route path='/user' component={user} description={description}/>
+        <Route path='/ag-grid' component={AgGridPage}/>
+        <Route path='/form' component={FormPage}/>
+        <Route path='/saga' component={SagaTestPage}/>
+        <Route path='/antd' component={AntdPage}/>
+        <Route path='/thunk' component={ThunkPage}/>
+        <Route path='/xlsx' component={XlsxPage}/>
+        <Route path='/' component={HomePage}/>
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 export default Routes;
