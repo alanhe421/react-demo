@@ -1,11 +1,12 @@
 import React from 'react';
 import { Form } from 'antd/es';
 import Icon from 'antd/es/icon';
-import { Checkbox, InputNumber } from 'antd';
 import Input from 'antd/es/input';
 import Button from 'antd/es/button';
 import OperationDisabled from '../operation-disabled';
-import Select from 'antd/es/select';
+import { setUserInfo } from '../../actions';
+import { connect } from 'react-redux';
+import { InputNumber } from 'antd';
 
 class FormPage extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class FormPage extends React.Component {
       disabled: true,
       username: 'hhhhh'
     };
+    this.doSomething = this.doSomething.bind(this);
   }
 
   render() {
@@ -27,79 +29,32 @@ class FormPage extends React.Component {
           </div>
           <Form className="login-form">
             <Form.Item>
-              {getFieldDecorator('username', {
+              {getFieldDecorator('name', {
                 rules: [{ required: true, message: 'Please input your username!' }],
                 initialValue: this.state.username
               })(
                 <Input
-                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                  placeholder="Username"
+                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="username"
+                  onBlur={this.onUsernameBlur}
                 />
               )}
             </Form.Item>
             <Form.Item>
-              {getFieldDecorator('password', {
-                rules: [{ required: true, message: 'Please input your Password!' }]
+              {getFieldDecorator('age', {
+                rules: [{ required: true, message: 'Please input your age!' }]
               })(
-                <Input
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>}
-                  type="password"
-                  placeholder="Password"
+                <InputNumber
+                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  placeholder="age"
                 />
               )}
             </Form.Item>
-            <Form.Item>
-              {getFieldDecorator('progress', {
-                rules: [],
-                defaultValue: null
-              })(
-                <InputNumber min={0.5} max={10}
-                             formatter={value => value + '%'} precision={2}
-                             parser={value => {
-                               if (value === null) {
-                                 return value;
-                               }
-                               return Number(value.slice(0, -1));
-                             }}
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator('remember', {
-                valuePropName: 'checked',
-                initialValue: false
-              })(<Checkbox onChange={this.handleRememberChange}>Remember me</Checkbox>)}
-              <a className="login-form-forgot" href="">
-                Forgot password
-              </a>
-              <Button type="primary" htmlType="submit" className="login-form-button">
-                Log in
-              </Button>
-              Or <a href="">register now!</a>
-            </Form.Item>
-
-            <Form.Item>
-              {getFieldDecorator('location', {
-                rules: [{ required: true, message: 'Please input your location' }],
-                initialValue: null
-              })(
-                <Select style={{ width: 120 }}>
-                  <Select.Option value={null}>null</Select.Option>
-                  <Select.Option value="jack">Jack</Select.Option>
-                  <Select.Option value="lucy">Lucy</Select.Option>
-                  <Select.Option value="disabled">
-                    Disabled
-                  </Select.Option>
-                  <Select.Option value="Yiminghe">yiminghe</Select.Option>
-                </Select>
-              )}
-            </Form.Item>
-
           </Form></OperationDisabled>
-
         <Button onClick={this.updateCheckboxDisabled}>update checkbox disabled status</Button>
         <Button onClick={this.updateUsername}>update username</Button>
         <Button onClick={this.onSubmit}>submit</Button>
+        <Button onClick={this.doSomething}>do something</Button>
       </div>
     );
   }
@@ -124,12 +79,29 @@ class FormPage extends React.Component {
   handleRememberChange = (e) => {
     // e.target.checked = false;
   };
+
+
+  doSomething() {
+    console.log(this.props.user);
+  }
 }
 
-export default Form.create({
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = {
+  setUserInfo
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Form.create({
   onValuesChange: (props, changedValues, allValues) => {
-    console.log(changedValues);
-    console.dir(props);
-    // props.form.setFieldsValue({ remember: false });
+    console.log(allValues);
+    props.setUserInfo(allValues);
   }
-})(FormPage);
+})(FormPage));
