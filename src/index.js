@@ -18,6 +18,7 @@ import { promiseMiddleware } from '@adobe/redux-saga-promise';
 import * as moment from 'moment';
 import 'moment-timezone';
 import ErrorBoundary from './components/base/error-boundary';
+import { HashRouter, Link } from 'react-router-dom';
 
 const effectMiddleware = next => effect => {
   // if (effect.type === 'FORK') {
@@ -46,16 +47,27 @@ moment.tz.setDefault('America/Jujuy');
 
 const render = (root) => ReactDOM.render(
   <Provider store={store}>
-    <main>
-      <nav>
-        menu list
-      </nav>
-      <div>
-        <ErrorBoundary>
-          <Routes/>
-        </ErrorBoundary>
-      </div>
-    </main>
+    <HashRouter>
+      <main>
+        <nav>
+          menu list
+          <Link to={'/home'}>
+            home
+          </Link>
+          <Link to={'/user'}>
+            user
+          </Link>
+          <Link to={'/form'}>
+            form
+          </Link>
+        </nav>
+        <div>
+          <ErrorBoundary>
+            <Routes />
+          </ErrorBoundary>
+        </div>
+      </main>
+    </HashRouter>
   </Provider>,
   root
 );
