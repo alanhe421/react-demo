@@ -16,7 +16,14 @@ class FormPage extends React.Component {
       username: 'hhhhh'
     };
     this.doSomething = this.doSomething.bind(this);
+    window.removeEventListener('beforeunload', this.listener);
+    window.addEventListener('beforeunload', this.listener);
   }
+
+  listener = function(e) {
+    console.log('will unmount');
+    e.returnValue = '';
+  };
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -83,6 +90,11 @@ class FormPage extends React.Component {
 
   doSomething() {
     console.log(this.props.user);
+  }
+
+
+  componentWillUnmount() {
+    alert('will unmount');
   }
 }
 
