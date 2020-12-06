@@ -24,7 +24,7 @@ const {
   choosePort,
   createCompiler,
   prepareProxy,
-  prepareUrls,
+  prepareUrls
 } = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
@@ -40,7 +40,7 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 }
 
 // Tools like Cloud9 rely on this.
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 4000;
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
 if (process.env.HOST) {
@@ -52,7 +52,7 @@ if (process.env.HOST) {
     )
   );
   console.log(
-    `If this was unintentional, check that you haven't mistakenly set it in your shell.`
+    'If this was unintentional, check that you haven\'t mistakenly set it in your shell.'
   );
   console.log(`Learn more here: ${chalk.yellow('http://bit.ly/2mwWSwH')}`);
   console.log();
