@@ -81,3 +81,11 @@ main > nav > a:hover {
     color: white;
     transition: background-color .3s;
 }
+
+
+.draggable{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    background-color: bisque;
+}

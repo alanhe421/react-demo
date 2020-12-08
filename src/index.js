@@ -19,6 +19,8 @@ import * as moment from 'moment';
 import 'moment-timezone';
 import ErrorBoundary from './components/base/error-boundary';
 import { HashRouter, Link } from 'react-router-dom';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const effectMiddleware = next => effect => {
   // if (effect.type === 'FORK') {
@@ -47,27 +49,29 @@ moment.tz.setDefault('America/Jujuy');
 
 const render = (root) => ReactDOM.render(
   <Provider store={store}>
-    <HashRouter>
-      <main>
-        <nav>
-          menu list
-          <Link to={'/home'}>
-            home
-          </Link>
-          <Link to={'/user'}>
-            user
-          </Link>
-          <Link to={'/form'}>
-            form
-          </Link>
-        </nav>
-        <div>
-          <ErrorBoundary>
-            <Routes />
-          </ErrorBoundary>
-        </div>
-      </main>
-    </HashRouter>
+    <DndProvider backend={HTML5Backend}>
+      <HashRouter>
+        <main>
+          <nav>
+            menu list
+            <Link to={'/home'}>
+              home
+            </Link>
+            <Link to={'/user'}>
+              user
+            </Link>
+            <Link to={'/form'}>
+              form
+            </Link>
+          </nav>
+          <div>
+            <ErrorBoundary>
+              <Routes />
+            </ErrorBoundary>
+          </div>
+        </main>
+      </HashRouter>
+    </DndProvider>
   </Provider>,
   root
 );
