@@ -1,5 +1,6 @@
 import React from 'react';
-import { Children } from './children';
+import Children from './children';
+import Button from './button';
 
 class home extends React.Component {
   constructor(props, context) {
@@ -8,6 +9,7 @@ class home extends React.Component {
       name: Math.random() * 100
     };
   }
+
   render() {
     console.log('render home', this.state && this.state.name);
     return <h1>home-111
@@ -20,6 +22,7 @@ class home extends React.Component {
         }}>random name
         </button>
       </div>
+      <Button />
       <div className={'draggable'}>
         I am draggable
         <Children children={1} />

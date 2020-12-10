@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export class Children extends React.PureComponent {
+class Children extends React.Component {
 
   render() {
     console.log('renderChildren', this.props.name);
@@ -9,3 +10,6 @@ export class Children extends React.PureComponent {
     </div>;
   }
 }
+
+export default connect()(Children);
+// export default (Children);
