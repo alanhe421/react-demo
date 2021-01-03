@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { UserNote } from '../user-note';
-import { NumberList } from '../number-list/number-list';
 import { fetchUserAction, updateUserAgeAction } from '../../actions';
-import Link from '../../containers/FilterLink';
 
 class userPage extends React.Component {
 
@@ -16,28 +14,22 @@ class userPage extends React.Component {
       count: 0,
       numbers: [1, 2, 3, 4, 5]
     };
+    this.sayHello = this.sayHello.bind(this);
   }
 
-  componentDidMount() {
-  }
-
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-  }
+  sayHello() {
+    console.log(this.state.numbers, 'sayHello');
+  };
 
   render() {
-    console.log('Class: userPage, Function: render, Line 28 111(): ', 111);
     return <div>
       <h1>age: {this.props.userAge}</h1>{this.state.count}
       <button onClick={this.callUserNote}>
         callUserNote
       </button>
-      <UserNote ref={this.userNoteRef}/>
-      <NumberList numbers={this.state.numbers}/>
-      <Link to={'/saga'}>saga</Link>
+      <UserNote ref={this.userNoteRef} callback={this.sayHello} />
       <button onClick={this.testRerender}>add user age</button>
       <button onClick={this.addNumber}>addNumber</button>
-
     </div>;
   }
 

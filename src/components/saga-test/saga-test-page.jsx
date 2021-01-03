@@ -17,7 +17,6 @@ class SagaTestPage extends Component {
   }
 
   render() {
-    console.log(this.state.number); // 0,0,1
     return (
       <div style={{ fontSize: 28 }}>
         SagaTest

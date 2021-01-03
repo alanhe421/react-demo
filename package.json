@@ -149,6 +149,7 @@
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "html-webpack-plugin": "4.0.0-beta.8",
     "react-hot-loader": "^4.12.13",
+    "redux-devtools-filterable-log-monitor": "^0.8.1",
     "semantic-release": "^15.13.31",
     "standard-version": "^7.1.0",
     "sw-precache-webpack-plugin": "0.11.4",

@@ -16,8 +16,6 @@ class FormPage extends React.Component {
       username: 'hhhhh'
     };
     this.doSomething = this.doSomething.bind(this);
-    window.removeEventListener('beforeunload', this.listener);
-    window.addEventListener('beforeunload', this.listener);
   }
 
   listener = function(e) {
@@ -92,10 +90,6 @@ class FormPage extends React.Component {
     console.log(this.props.user);
   }
 
-
-  componentWillUnmount() {
-    alert('will unmount');
-  }
 }
 
 const mapStateToProps = (state) => {
