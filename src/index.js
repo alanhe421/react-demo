@@ -18,7 +18,7 @@ import { promiseMiddleware } from '@adobe/redux-saga-promise';
 import * as moment from 'moment';
 import 'moment-timezone';
 import ErrorBoundary from './components/base/error-boundary';
-import { HashRouter, Link } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -50,7 +50,7 @@ moment.tz.setDefault('America/Jujuy');
 const render = (root) => ReactDOM.render(
   <Provider store={store}>
     <DndProvider backend={HTML5Backend}>
-      <HashRouter>
+      <BrowserRouter>
         <main>
           <nav>
             menu list
@@ -70,7 +70,7 @@ const render = (root) => ReactDOM.render(
             </ErrorBoundary>
           </div>
         </main>
-      </HashRouter>
+      </BrowserRouter>
     </DndProvider>
   </Provider>,
   root
