@@ -68,8 +68,6 @@ export default () => {
         columns={columns}
         rowKey='key'
         search={false}
-        dateFormatter='string'
-        headerTitle='受控模式'
         options={{
           fullScreen: true,
           reload: false,
