@@ -1,6 +1,6 @@
 import React from 'react';
+import { ConfigProvider, Spin } from 'antd';
 import ProTable from '@ant-design/pro-table';
-import { ConfigProvider } from 'antd';
 
 const valueEnum = {
   0: 'close',
@@ -58,12 +58,24 @@ const columns = [
     key: 'option',
     width: 120,
     valueType: 'option',
-    render: () => [<a key="1">操作</a>, <a key="2">删除</a>]
+    render: () => <button onClick={() => this.setState({ spin: true })}>
+      open loading
+    </button>
   }
 ];
-export default () => {
-  return (
-    <ConfigProvider direction="rtl">
+
+class Table extends React.Component {
+
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      spin: true
+    };
+  }
+
+  render() {
+    return <ConfigProvider direction="rtl">
       <ProTable
         columns={columns}
         rowKey='key'
@@ -76,6 +88,9 @@ export default () => {
         }
         }
       />
-    </ConfigProvider>
-  );
-};
+      <Spin spinning={this.state.spin} />
+    </ConfigProvider>;
+  }
+}
+
+export default Table;
