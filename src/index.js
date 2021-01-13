@@ -63,6 +63,9 @@ const render = (root) => ReactDOM.render(
             <Link to={'/form'}>
               form
             </Link>
+            <Link to={'/pro-table'}>
+              pro table
+            </Link>
           </nav>
           <div>
             <ErrorBoundary>

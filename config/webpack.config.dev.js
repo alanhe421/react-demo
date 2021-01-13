@@ -247,7 +247,9 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new CopyWebpackPlugin([{ from: path.resolve(__dirname, '..') + '/src/mock-data', to: 'static/mock-data' }])
+    new CopyWebpackPlugin([{ from: path.resolve(__dirname, '..') + '/src/mock-data', to: 'static/mock-data' },
+      { from: './node_modules/@ant-design/pro-table/dist/protable.css', to: 'static/css' }
+    ])
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
