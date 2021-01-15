@@ -1,6 +1,6 @@
 import React from 'react';
-import { ConfigProvider, Spin } from 'antd';
-import ProTable from '@ant-design/pro-table';
+import { Table } from 'antd';
+import { VTComponents } from 'virtualizedtableforantd';
 
 const valueEnum = {
   0: 'close',
@@ -64,33 +64,53 @@ const columns = [
   }
 ];
 
-class Table extends React.Component {
+class TablePage extends React.Component {
 
 
   constructor(props, context) {
     super(props, context);
     this.state = {
-      spin: true
+      spin: true,
+      dataSource: new Array(1000).fill(null).map(() => ({
+        name: Math.random()
+      }))
     };
   }
 
   render() {
-    return <ConfigProvider direction="rtl">
-      <ProTable
-        columns={columns}
-        rowKey='key'
-        search={false}
-        options={{
-          fullScreen: true,
-          reload: false,
-          setting: false,
-          density: false
+    return <Table
+      scroll={{ y: 600 }} // It's important for using VT!!! DO NOT FORGET!!!
+      columns={[
+        {
+          title: 'Name',
+          dataIndex: 'name'
+        },
+        {
+          title: 'Name1',
+          dataIndex: 'name1'
+        },
+        {
+          title: 'Name2',
+          dataIndex: 'name2'
+        }, {
+          title: 'Name3',
+          dataIndex: 'name3'
+        }, {
+          title: 'Name4',
+          dataIndex: 'name4'
+        }, {
+          title: 'Name5',
+          dataIndex: 'name5'
+        }, {
+          title: 'Name6',
+          dataIndex: 'name6'
         }
-        }
-      />
-      <Spin spinning={this.state.spin} />
-    </ConfigProvider>;
+      ]}
+      components={VTComponents({ id: 1111 })}
+      dataSource={this.state.dataSource}
+      pagination={false}
+    />;
   }
 }
 
-export default Table;
+export default TablePage;
