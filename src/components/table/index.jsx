@@ -3,7 +3,7 @@ import { Form, Input, InputNumber, Popconfirm, Table } from 'antd';
 import { setComponents, VTComponents } from 'virtualizedtableforantd';
 
 const data = [];
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 1000; i++) {
   data.push({
     key: i.toString(),
     name: `Edrward ${i}`,

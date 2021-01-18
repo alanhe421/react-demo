@@ -17,7 +17,6 @@ class home extends React.Component {
   }
 
   render() {
-    console.log('render home', this.state && this.state.name);
     return <h1>home-111
       111113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <CardToc />
