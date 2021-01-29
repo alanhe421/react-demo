@@ -7,6 +7,7 @@ import { resolvePromiseAction } from '@adobe/redux-saga-promise';
 function* fetchUserEffects(action) {
   const userInfo = (yield call(getUserInfo)).data;
   yield put(setUserInfo(userInfo));
+  yield game();
 }
 
 function* getNum() {
@@ -29,9 +30,31 @@ function* testExceptionEffects2(action) {
   yield call(resolvePromiseAction, action, userInfo);
 }
 
+function* playLevelOne() {
+  console.log('playLevelOne');
+}
+
+function* playLevelTwo() {
+  console.log('playLevelTwo');
+}
+
+function* playLevelThree() {
+  console.log('playLevelThree');
+}
+
+function* game() {
+  const score1 = yield playLevelOne()
+
+  const score2 = yield playLevelTwo()
+
+  const score3 = yield playLevelThree()
+}
+
 function* mySaga() {
   yield takeLeading(fetchUserAction2, testExceptionEffects2);
   yield takeLatest('USER_FETCH', fetchUserEffects);
 }
+
+
 
 export default mySaga;
