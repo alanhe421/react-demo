@@ -24,15 +24,18 @@ class FormPage extends React.Component {
   };
 
   render() {
-    const { getFieldDecorator } = this.props.form;
-
+    const [form] = Form.useForm();
+    const { getFieldDecorator } = form;
     return (
       <div>
         <OperationDisabled disabled={false}>
           <div>
             test OperationDisabled
           </div>
-          <Form className="login-form">
+          <Form className="login-form" onValuesChange={(props, changedValues, allValues) => {
+            console.log(allValues);
+            props.setUserInfo(allValues);
+          }}>
             <Form.Item>
               {getFieldDecorator('name', {
                 rules: [{ required: true, message: 'Please input your username!' }],
@@ -41,7 +44,6 @@ class FormPage extends React.Component {
                 <Input
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="username"
-                  onBlur={this.onUsernameBlur}
                 />
               )}
             </Form.Item>
@@ -104,10 +106,4 @@ const mapDispatchToProps = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(Form.create({
-  onValuesChange: (props, changedValues, allValues) => {
-    console.log(allValues);
-    props.setUserInfo(allValues);
-  }
-})(FormPage));
+  mapDispatchToProps)(FormPage);

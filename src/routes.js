@@ -9,7 +9,6 @@ import ThunkPage from './components/thunk/thunk-page';
 import XlsxPage from './components/xlsx/xlsx';
 import HomePage from './components/home/home';
 import ProTable from './components/pro-table';
-import TablePage from './components/table';
 
 const description = 'hello world';
 const Routes = () => {
@@ -23,7 +22,6 @@ const Routes = () => {
       <Route path='/thunk' component={ThunkPage} />
       <Route path='/xlsx' component={XlsxPage} />
       <Route path='/pro-table' component={ProTable} />
-      <Route path='/table' component={TablePage} />
       <Route path='/' component={HomePage} />
     </Switch>
   );

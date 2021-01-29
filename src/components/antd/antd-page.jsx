@@ -136,9 +136,13 @@ class AntdPage extends React.Component {
         width: '200px'
       }
     };
-
-    const { getFieldDecorator } = this.props.form;
-    return <Form className="login-form">
+    const [form] = Form.useForm();
+    const { getFieldDecorator } = form;
+    return <Form className="login-form" onValuesChange={
+      (props, changedValues, allValues) => {
+        console.log(changedValues);
+      }
+    }>
       <Form.Item>
         {getFieldDecorator('username', {
           rules: [
@@ -148,7 +152,7 @@ class AntdPage extends React.Component {
           ]
         })(
           <Input
-            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }}/>}
+            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
             placeholder="Username"
           />
         )}
@@ -156,7 +160,7 @@ class AntdPage extends React.Component {
       <Form.Item>
         {getFieldDecorator('password')(
           <Input
-            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }}/>}
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             type="password"
             placeholder="Password"
           />
@@ -173,10 +177,4 @@ class AntdPage extends React.Component {
   }
 }
 
-export default Form.create(
-  {
-    onValuesChange: (props, changedValues, allValues) => {
-      console.log(changedValues);
-    }
-  }
-)(AntdPage);
+export default AntdPage;
