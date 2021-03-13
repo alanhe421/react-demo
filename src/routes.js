@@ -9,6 +9,7 @@ import ThunkPage from './components/thunk/thunk-page';
 import XlsxPage from './components/xlsx/xlsx';
 import HomePage from './components/home/home';
 import ProTable from './components/pro-table';
+import Table from './components/table';
 
 const description = 'hello world';
 const Routes = () => {
@@ -19,6 +20,7 @@ const Routes = () => {
       <Route path='/form' component={FormPage} />
       <Route path='/saga' component={SagaTestPage} />
       <Route path='/antd' component={AntdPage} />
+      <Route path='/table' component={Table} />
       <Route path='/thunk' component={ThunkPage} />
       <Route path='/xlsx' component={XlsxPage} />
       <Route path='/pro-table' component={ProTable} />

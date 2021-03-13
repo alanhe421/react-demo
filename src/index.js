@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { applyMiddleware, compose, createStore } from 'redux';
 import Provider from 'react-redux/es/components/Provider';
+import 'antd/dist/antd.css';
 import './App.css';
 import rootReducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
@@ -74,6 +75,10 @@ const render = (root) => ReactDOM.render(
             </Link>
           </nav>
           <div>
+            <button onClick={() => this.setState({
+              theme: this.state.theme === 'dark' ? 'light' : 'dark'
+            })}>toggle light/dark
+            </button>
             <ErrorBoundary>
               <Routes />
             </ErrorBoundary>

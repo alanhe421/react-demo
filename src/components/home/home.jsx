@@ -16,6 +16,15 @@ class home extends React.Component {
 
   }
 
+  handleInnerClick(e) {
+    console.log(e, 'inner');
+    e.stopPropagation();
+  }
+
+  handleOuterClick(e) {
+    console.log(e, 'outer');
+  }
+
   render() {
     return <h1>home-111
       111113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -64,6 +73,13 @@ class home extends React.Component {
         <a href={'#segment4'}>
           #
         </a>
+      </div>
+
+      <div style={{ width: 200 }} onClick={this.handleOuterClick}>
+        outer
+        <div style={{ width: 100 }} onClick={this.handleInnerClick}>
+          inner
+        </div>
       </div>
     </h1>;
   }
