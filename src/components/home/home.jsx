@@ -13,8 +13,17 @@ class home extends React.Component {
 
 
   componentDidMount() {
+    window.setTimeout(() => {
 
-  }
+    }, 3000);
+
+
+
+      this.setState({
+        name: 'alanhe'
+      });
+      console.log(this.state);
+    }
 
   handleInnerClick(e) {
     console.log(e, 'inner');

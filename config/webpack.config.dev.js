@@ -12,6 +12,10 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const DashboardPlugin = require('webpack-dashboard/plugin');
+
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
 const publicPath = '/';
@@ -249,7 +253,8 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new CopyWebpackPlugin([{ from: path.resolve(__dirname, '..') + '/src/mock-data', to: 'static/mock-data' },
       { from: './node_modules/@ant-design/pro-table/dist/protable.css', to: 'static/css' }
-    ])
+    ]),
+    new DashboardPlugin()
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
