@@ -2,6 +2,7 @@ import React from 'react';
 import Children from './children';
 import Button from './button';
 import { CardToc } from './card-toc';
+import Footer from '../Footer';
 
 class home extends React.Component {
   constructor(props, context) {
@@ -18,12 +19,11 @@ class home extends React.Component {
     }, 3000);
 
 
-
-      this.setState({
-        name: 'alanhe'
-      });
-      console.log(this.state);
-    }
+    this.setState({
+      name: 'alanhe'
+    });
+    console.log(this.state);
+  }
 
   handleInnerClick(e) {
     console.log(e, 'inner');
@@ -90,6 +90,7 @@ class home extends React.Component {
           inner
         </div>
       </div>
+      <Footer />
     </h1>;
   }
 }
