@@ -3,6 +3,7 @@ import Children from './children';
 import Button from './button';
 import { CardToc } from './card-toc';
 import Footer from '../Footer';
+import Example from '../example';
 
 class home extends React.Component {
   constructor(props, context) {
@@ -90,6 +91,7 @@ class home extends React.Component {
           inner
         </div>
       </div>
+      <Example />
       <Footer />
     </h1>;
   }
