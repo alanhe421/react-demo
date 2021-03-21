@@ -4,6 +4,7 @@ import Button from './button';
 import { CardToc } from './card-toc';
 import Footer from '../Footer';
 import Example from '../example';
+import ClickCounter from './click-counter';
 
 class home extends React.Component {
   constructor(props, context) {
@@ -39,6 +40,7 @@ class home extends React.Component {
     return <h1>home-111
       111113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <CardToc />
+      <ClickCounter/>
       <div>
         <button onClick={() => {
           this.setState(() => ({
