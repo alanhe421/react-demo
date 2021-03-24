@@ -18,7 +18,7 @@ const Demo = () => {
     <Form
       {...layout}
       name="basic"
-      initialValues={{ remember: true, country: [] }}
+      initialValues={{ remember: true, country: 'china,usa,japan,korea' }}
       onValuesChange={onValuesChange}
     >
       <Form.Item

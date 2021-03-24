@@ -1,13 +1,21 @@
 import { Option } from 'antd/es/mentions';
 import { Select } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 
-const CountrySelector = () => {
+const CountrySelector = (props = {}) => {
+  const defaultValue = (typeof props.value === 'string') ? props.value.split(',') : props.value;
+  const [value] = useState(defaultValue);
+  const onChange = (value) => {
+    props.onChange(value.join(','));
+    console.log(value);
+  };
   return <Select
     mode="multiple"
     style={{ width: '100%' }}
     placeholder="select one country"
     optionLabelProp="label"
+    defaultValue={value}
+    onChange={onChange}
   >
     <Option value="china" label="China">
       <div className="demo-option-label-item">
