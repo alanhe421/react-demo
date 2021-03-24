@@ -1,109 +1,97 @@
 import React from 'react';
-import { Form } from 'antd/es';
-import Icon from 'antd/es/icon';
-import Input from 'antd/es/input';
-import Button from 'antd/es/button';
-import OperationDisabled from '../operation-disabled';
-import { setUserInfo } from '../../actions';
-import { connect } from 'react-redux';
-import { InputNumber } from 'antd';
+import { Form, Input, Button, Checkbox, Select } from 'antd';
+import { Option } from 'antd/es/mentions';
 
-class FormPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      disabled: true,
-      username: 'hhhhh'
-    };
-    this.doSomething = this.doSomething.bind(this);
-  }
-
-  listener = function(e) {
-    console.log('will unmount');
-    e.returnValue = '';
-  };
-
-  render() {
-    const [form] = Form.useForm();
-    const { getFieldDecorator } = form;
-    return (
-      <div>
-        <OperationDisabled disabled={false}>
-          <div>
-            test OperationDisabled
-          </div>
-          <Form className="login-form" onValuesChange={(props, changedValues, allValues) => {
-            console.log(allValues);
-            props.setUserInfo(allValues);
-          }}>
-            <Form.Item>
-              {getFieldDecorator('name', {
-                rules: [{ required: true, message: 'Please input your username!' }],
-                initialValue: this.state.username
-              })(
-                <Input
-                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="username"
-                />
-              )}
-            </Form.Item>
-            <Form.Item>
-              {getFieldDecorator('age', {
-                rules: [{ required: true, message: 'Please input your age!' }]
-              })(
-                <InputNumber
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder="age"
-                />
-              )}
-            </Form.Item>
-          </Form></OperationDisabled>
-        <Button onClick={this.updateCheckboxDisabled}>update checkbox disabled status</Button>
-        <Button onClick={this.updateUsername}>update username</Button>
-        <Button onClick={this.onSubmit}>submit</Button>
-        <Button onClick={this.doSomething}>do something</Button>
-      </div>
-    );
-  }
-
-  onSubmit = () => {
-    this.props.form.validateFields();
-  };
-
-
-  updateCheckboxDisabled = () => {
-    this.setState({
-      disabled: !this.state.disabled
-    });
-  };
-
-  updateUsername = () => {
-    this.setState({
-      username: Math.random()
-    });
-  };
-
-  handleRememberChange = (e) => {
-    // e.target.checked = false;
-  };
-
-
-  doSomething() {
-    console.log(this.props.user);
-  }
-
-}
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.user
-  };
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 }
+};
+const tailLayout = {
+  wrapperCol: { offset: 8, span: 16 }
 };
 
-const mapDispatchToProps = {
-  setUserInfo
+const Demo = () => {
+  const onFinish = (values) => {
+    console.log('Success:', values);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
+  return (
+    <Form
+      {...layout}
+      name="basic"
+      initialValues={{ remember: true, country: [] }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+    >
+      <Form.Item
+        label="Username"
+        name="username"
+        rules={[{ required: true, message: 'Please input your username!' }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Country"
+        name="country"
+        rules={[{ required: true, message: 'Please select country!' }]}
+      >
+        <Select
+          mode="multiple"
+          style={{ width: '100%' }}
+          placeholder="select one country"
+          optionLabelProp="label"
+        >
+          <Option value="china" label="China">
+            <div className="demo-option-label-item">
+        <span role="img" aria-label="China">
+          🇨🇳
+        </span>
+              China (中国)
+            </div>
+          </Option>
+          <Option value="usa" label="USA">
+            <div className="demo-option-label-item">
+        <span role="img" aria-label="USA">
+          🇺🇸
+        </span>
+              USA (美国)
+            </div>
+          </Option>
+          <Option value="japan" label="Japan">
+            <div className="demo-option-label-item">
+        <span role="img" aria-label="Japan">
+          🇯🇵
+        </span>
+              Japan (日本)
+            </div>
+          </Option>
+          <Option value="korea" label="Korea">
+            <div className="demo-option-label-item">
+        <span role="img" aria-label="Korea">
+          🇰🇷
+        </span>
+              Korea (韩国)
+            </div>
+          </Option>
+        </Select>
+      </Form.Item>
+
+      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+        <Checkbox>Remember me</Checkbox>
+      </Form.Item>
+
+      <Form.Item {...tailLayout}>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+  );
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps)(FormPage);
+export default Demo;
