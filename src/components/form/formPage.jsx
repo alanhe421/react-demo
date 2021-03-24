@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox, Select } from 'antd';
-import { Option } from 'antd/es/mentions';
 import CountrySelector from './country-selector';
 
 const layout = {
@@ -12,21 +11,15 @@ const tailLayout = {
 };
 
 const Demo = () => {
-  const onFinish = (values) => {
-    console.log('Success:', values);
+  const onValuesChange = (changedValues, allValues) => {
+    console.log(changedValues, allValues);
   };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
   return (
     <Form
       {...layout}
       name="basic"
       initialValues={{ remember: true, country: [] }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
+      onValuesChange={onValuesChange}
     >
       <Form.Item
         label="Username"
