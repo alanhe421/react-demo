@@ -1,10 +1,9 @@
 import { Option } from 'antd/es/mentions';
 import { Select } from 'antd';
-import React, { useRef } from 'react';
+import React from 'react';
 
 const CountrySelector = (props = {}) => {
-  const defaultValue = (typeof props.value === 'string') ? props.value.split(',') : props.value;
-  const selectRef = useRef(null);
+  const value = (typeof props.value === 'string') ? props.value.split(',') : props.value;
   const onChange = (value, option) => {
     if (value.includes('usa')) {
       console.log('can not select usa', props.value);
@@ -14,15 +13,13 @@ const CountrySelector = (props = {}) => {
     props.onChange(value.join(','));
     console.log(value, option);
   };
-  console.log(defaultValue);
   return <Select
     mode="multiple"
     style={{ width: '100%' }}
     placeholder="select one country"
     optionLabelProp="label"
-    value={defaultValue}
+    value={value}
     onChange={onChange}
-    ref={selectRef}
   >
     <Option value="china" label="China">
       <div className="demo-option-label-item">
