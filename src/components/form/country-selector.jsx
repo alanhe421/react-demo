@@ -5,9 +5,9 @@ import React, { useState } from 'react';
 const CountrySelector = (props = {}) => {
   const defaultValue = (typeof props.value === 'string') ? props.value.split(',') : props.value;
   const [value] = useState(defaultValue);
-  const onChange = (value) => {
+  const onChange = (value, option) => {
     props.onChange(value.join(','));
-    console.log(value);
+    console.log(value, option);
   };
   return <Select
     mode="multiple"
