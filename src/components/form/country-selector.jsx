@@ -5,13 +5,17 @@ import React from 'react';
 const CountrySelector = (props = {}) => {
   const value = (typeof props.value === 'string') ? props.value.split(',') : props.value;
   const onChange = (value, option) => {
+    console.log(value);
     if (value.includes('usa')) {
       console.log('can not select usa', props.value);
-      props.onChange(props.value);
+      props.onChange(props.value ? props.value : []);
       return;
     }
-    props.onChange(value.join(','));
+    props.onChange(value.length ? value.join(',') : undefined);
     console.log(value, option);
+  };
+  const onSelect = (value) => {
+    console.log(value);
   };
   return <Select
     mode="multiple"
@@ -20,6 +24,7 @@ const CountrySelector = (props = {}) => {
     optionLabelProp="label"
     value={value}
     onChange={onChange}
+    onSelect={onSelect}
   >
     <Option value="china" label="China">
       <div className="demo-option-label-item">
