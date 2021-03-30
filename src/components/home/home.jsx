@@ -5,6 +5,7 @@ import { CardToc } from './card-toc';
 import Footer from '../Footer';
 import Example from '../example';
 import ClickCounter from './click-counter';
+import Father from './father';
 
 class home extends React.Component {
   constructor(props, context) {
@@ -12,6 +13,7 @@ class home extends React.Component {
     this.state = {
       name: Math.random() * 100
     };
+    this.handleOuterClick = this.handleOuterClick.bind(this);
   }
 
 
@@ -34,13 +36,17 @@ class home extends React.Component {
 
   handleOuterClick(e) {
     console.log(e, 'outer');
+    this.setState({
+      name: Math.random()
+    });
   }
 
   render() {
     return <h1>home-111
       111113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <CardToc />
-      <ClickCounter/>
+      <ClickCounter />
+      <Father />
       <div>
         <button onClick={() => {
           this.setState(() => ({
