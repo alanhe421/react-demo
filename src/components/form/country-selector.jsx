@@ -5,17 +5,14 @@ import React from 'react';
 const CountrySelector = (props = {}) => {
   const value = (typeof props.value === 'string') ? props.value.split(',') : props.value;
   const onChange = (value, option) => {
-    console.log(value);
+    console.log('onChange', value);
     if (value.includes('usa')) {
-      console.log('can not select usa', props.value);
       props.onChange(props.value ? props.value : []);
       return;
     }
     props.onChange(value.length ? value.join(',') : undefined);
-    console.log(value, option);
   };
   const onSelect = (value) => {
-    console.log(value);
   };
   return <Select
     mode="multiple"
