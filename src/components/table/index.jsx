@@ -1,141 +1,101 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { VariableSizeGrid as Grid } from 'react-window';
-import ResizeObserver from 'rc-resize-observer';
-import classNames from 'classnames';
+import React from 'react';
 import { Table } from 'antd';
-
-function VirtualTable(props) {
-  const { columns, scroll } = props;
-  const [tableWidth, setTableWidth] = useState(0);
-  const widthColumnCount = columns.filter(({ width }) => !width).length;
-  const mergedColumns = columns.map((column) => {
-    if (column.width) {
-      return column;
-    }
-
-    return { ...column, width: Math.floor(tableWidth / widthColumnCount) };
-  });
-  const gridRef = useRef();
-  const [connectObject] = useState(() => {
-    const obj = {};
-    Object.defineProperty(obj, 'scrollLeft', {
-      get: () => null,
-      set: (scrollLeft) => {
-        if (gridRef.current) {
-          gridRef.current.scrollTo({
-            scrollLeft
-          });
-        }
-      }
-    });
-    return obj;
-  });
-
-  const resetVirtualGrid = () => {
-    gridRef.current.resetAfterIndices({
-      columnIndex: 0,
-      shouldForceUpdate: false
-    });
-  };
-
-  useEffect(() => resetVirtualGrid, [tableWidth]);
-
-  const renderVirtualList = (rawData, { scrollbarSize, ref, onScroll }) => {
-    ref.current = connectObject;
-    const totalHeight = rawData.length * 54;
-    return (
-      <Grid
-        ref={gridRef}
-        className="virtual-grid"
-        columnCount={mergedColumns.length}
-        columnWidth={(index) => {
-          const { width } = mergedColumns[index];
-          return totalHeight > scroll.y && index === mergedColumns.length - 1
-            ? width - scrollbarSize - 1
-            : width;
-        }}
-        height={scroll.y}
-        rowCount={rawData.length}
-        rowHeight={() => 54}
-        width={tableWidth}
-        onScroll={({ scrollLeft }) => {
-          onScroll({
-            scrollLeft
-          });
-        }}
-      >
-        {({ columnIndex, rowIndex, style }) => (
-          <div
-            className={classNames('virtual-table-cell', {
-              'virtual-table-cell-last': columnIndex === mergedColumns.length - 1
-            })}
-            style={style}
-          >
-            {rawData[rowIndex][mergedColumns[columnIndex].dataIndex]}
-          </div>
-        )}
-      </Grid>
-    );
-  };
-
-  return (
-    <ResizeObserver
-      onResize={({ width }) => {
-        setTableWidth(width);
-      }}
-    >
-      <Table
-        {...props}
-        className="virtual-table"
-        columns={mergedColumns}
-        pagination={false}
-        components={{
-          body: renderVirtualList
-        }}
-      />
-    </ResizeObserver>
-  );
-} // Usage
 
 const columns = [
   {
-    title: 'A',
-    dataIndex: 'key',
-    width: 150
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name'
   },
   {
-    title: 'B',
-    dataIndex: 'key'
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+    width: '12%'
   },
   {
-    title: 'C',
-    dataIndex: 'key'
-  },
-  {
-    title: 'D',
-    dataIndex: 'key'
-  },
-  {
-    title: 'E',
-    dataIndex: 'key',
-    width: 200
-  },
-  {
-    title: 'F',
-    dataIndex: 'key',
-    width: 100
+    title: 'Address',
+    dataIndex: 'address',
+    width: '30%',
+    key: 'address'
   }
 ];
-const data = Array.from(
+const data = [
   {
-    length: 100000
+    key: 1,
+    name: 'John Brown sr.',
+    age: 60,
+    address: 'New York No. 1 Lake Park',
+    children: [
+      {
+        key: 11,
+        name: 'John Brown',
+        age: 42,
+        address: 'New York No. 2 Lake Park'
+      },
+      {
+        key: 12,
+        name: 'John Brown jr.',
+        age: 30,
+        address: 'New York No. 3 Lake Park',
+        children: [
+          {
+            key: 121,
+            name: 'Jimmy Brown',
+            age: 16,
+            address: 'New York No. 3 Lake Park'
+          }
+        ]
+      },
+      {
+        key: 13,
+        name: 'Jim Green sr.',
+        age: 72,
+        address: 'London No. 1 Lake Park',
+        children: [
+          {
+            key: 131,
+            name: 'Jim Green',
+            age: 42,
+            address: 'London No. 2 Lake Park',
+            children: [
+              {
+                key: 1311,
+                name: 'Jim Green jr.',
+                age: 25,
+                address: 'London No. 3 Lake Park'
+              },
+              {
+                key: 1312,
+                name: 'Jimmy Green sr.',
+                age: 18,
+                address: 'London No. 4 Lake Park'
+              }
+            ]
+          }
+        ]
+      }
+    ]
   },
-  (_, key) => ({
-    key
-  })
-);
+  {
+    key: 2,
+    name: 'Joe Black',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park'
+  }
+];
 
-export default () => <VirtualTable columns={columns} data={data} scroll={{
-  y: 300,
-  x: '100vw'
-}} />
+function TreeData() {
+  const onChange = (_0, selectedRows) => {
+    console.log(selectedRows);
+  };
+  return (
+    <Table
+      columns={columns}
+      rowSelection={{ onChange }}
+      dataSource={data}
+    />
+  );
+}
+
+export default TreeData;
