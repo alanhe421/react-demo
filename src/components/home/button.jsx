@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Button() {
   const [buttonText, setButtonText] = useState('Click me,   please');
+
+  useEffect(() => {
+    console.log(1, Math.random());
+  }, []);
 
   function handleClick() {
     return setButtonText('Thanks, been clicked!');

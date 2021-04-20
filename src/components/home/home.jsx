@@ -21,7 +21,7 @@ class home extends React.Component {
     return <h1>home-111
       111113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <CardToc />
-      <div class={'test-test'}>
+      <div className={'test-test'}>
         <button onClick={() => {
           this.setState(() => ({
             name: Math.random() * 100
