@@ -10,6 +10,7 @@ import XlsxPage from './components/xlsx/xlsx';
 import HomePage from './components/home/home';
 import ProTable from './components/pro-table';
 import TablePage from './components/table';
+import UserForm from './components/antd/user-form';
 
 const description = 'hello world';
 const Routes = () => {
@@ -20,6 +21,7 @@ const Routes = () => {
       <Route path='/form' component={FormPage} />
       <Route path='/saga' component={SagaTestPage} />
       <Route path='/antd' component={AntdPage} />
+      <Route path='/tree' component={UserForm} />
       <Route path='/thunk' component={ThunkPage} />
       <Route path='/xlsx' component={XlsxPage} />
       <Route path='/pro-table' component={ProTable} />

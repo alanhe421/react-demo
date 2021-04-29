@@ -69,6 +69,9 @@ const render = (root) => ReactDOM.render(
             <Link to={'/table'}>
               table
             </Link>
+            <Link to={'/tree'}>
+              tree
+            </Link>
           </nav>
           <div>
             <ErrorBoundary>
