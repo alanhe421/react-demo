@@ -12,7 +12,7 @@
     "commit": "git-cz",
     "preinstall": "node ./scripts/checkYarn.js",
     "release": "standard-version",
-    "start": "webpack-dashboard -- node scripts/start.js",
+    "start": "node scripts/start.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "config": {
