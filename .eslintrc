@@ -1,6 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": "react-app",
+  "failOnError": false,
   "env": {
     "browser": true,
     "node": true,
