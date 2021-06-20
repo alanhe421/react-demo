@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css"
+      }
+    ],
+    "babel-plugin-redux-saga"
+  ],
+  "presets": [
+    "@babel/preset-react"
+  ]
+}

@@ -47,8 +47,8 @@ sagaMiddleware.run(mySaga);
 
 moment.tz.setDefault('America/Jujuy');
 
-const render = (root) => ReactDOM.render(
-  <Provider store={store}>
+function getProvider() {
+  return <Provider store={store}>
     <DndProvider backend={HTML5Backend}>
       <BrowserRouter>
         <main>
@@ -69,6 +69,9 @@ const render = (root) => ReactDOM.render(
             <Link to={'/table'}>
               table
             </Link>
+            <Link to={'/duck'}>
+              Duck Test
+            </Link>
           </nav>
           <div>
             <ErrorBoundary>
@@ -78,7 +81,11 @@ const render = (root) => ReactDOM.render(
         </main>
       </BrowserRouter>
     </DndProvider>
-  </Provider>,
+  </Provider>;
+}
+
+const render = (root) => ReactDOM.render(
+  getProvider(),
   root
 );
 

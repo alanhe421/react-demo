@@ -5545,6 +5545,11 @@ eslint-plugin-jsx-a11y@6.2.3:
     has "^1.0.3"
     jsx-ast-utils "^2.2.1"
 
+eslint-plugin-react-hooks@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz#8c229c268d468956334c943bb45fc860280f5556"
+  integrity sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==
+
 eslint-plugin-react@7.15.1:
   version "7.15.1"
   resolved "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-7.15.1.tgz#db5f8ed66c6ba46922518f08e1df9dac52ccaa49"
@@ -12048,6 +12053,11 @@ redux-devtools-themes@^1.0.0:
   dependencies:
     base16 "^1.0.0"
 
+redux-saga-catch@0.0.9:
+  version "0.0.9"
+  resolved "https://registry.npmjs.org/redux-saga-catch/-/redux-saga-catch-0.0.9.tgz#cc7a3c304b2a6ba8a913f2c641f60e22f1238d0f"
+  integrity sha512-FnLlS/H4+xbgd7H32784789bpyA2j57B9eBzT9SLIadhK0MJ36zHUQlIKBlqrsXemFAxSLHVE3WXLChZzb4M0g==
+
 redux-saga@1.1.3, redux-saga@^1.1.3:
   version "1.1.3"
   resolved "https://registry.npmjs.org/redux-saga/-/redux-saga-1.1.3.tgz#9f3e6aebd3c994bbc0f6901a625f9a42b51d1112"
@@ -12499,6 +12509,13 @@ safe-regex@^1.1.0:
   version "2.1.2"
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
+
+saga-duck@3.4.2:
+  version "3.4.2"
+  resolved "https://registry.npmjs.org/saga-duck/-/saga-duck-3.4.2.tgz#30497a9b06b137be49e1962bc4fc861f60af3546"
+  integrity sha512-5/SSjLUqGTOLpQzfNvRCSbJ0sy1ecGYDMh7WRMsC8SWfb1/Qer8XS4qFTbJ1MQLMT9hdc/mMwqJfdUAJ+B4XqQ==
+  dependencies:
+    redux-saga-catch "0.0.9"
 
 sane@^4.0.3:
   version "4.1.0"
