@@ -32,4 +32,10 @@ export class MyDuck extends Duck {
       }
     };
   }
+
+  * saga() {
+    yield* super.saga();
+
+    console.log('saga test');
+  }
 }

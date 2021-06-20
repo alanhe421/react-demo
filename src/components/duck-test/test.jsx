@@ -16,7 +16,6 @@ const DuckTest = ({ duck, store, dispatch }) => {
   </div>);
 };
 
-
 const duckRuntime = new DuckRuntime(new MyDuck());
 const ConnectedC = duckRuntime.connectRoot()(DuckTest);
 
