@@ -1,7 +1,6 @@
 {
   "parser": "babel-eslint",
   "extends": "react-app",
-  "failOnError": false,
   "env": {
     "browser": true,
     "node": true,
@@ -10,6 +9,7 @@
   "plugins": [
     "react"
   ],
+  "failOnError": false,
   "globals": {
     "__DEV__": true,
     "__PROD__": true,
