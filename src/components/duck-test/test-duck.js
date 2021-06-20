@@ -24,6 +24,7 @@ export class MyDuck extends Duck {
   }
 
   get creators() {
+    const { types } = this;
     return {
       ...super.creators,
       add() {

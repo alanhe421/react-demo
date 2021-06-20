@@ -1,45 +1,27 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { DuckRuntime } from 'saga-duck';
 import { MyDuck } from './test-duck';
-import { Provider } from 'react-redux';
 
 const DuckTest = ({ duck, store, dispatch }) => {
-  const { selectors, creators } = duck;
-  const count = selectors(store);
-  return <div>
+  const { selector, creators } = duck;
+  return (<div>
     counter:
     {
-      count
+      selector(store).num
     }
     <button onClick={() => dispatch(creators.add())}>
       add 1
     </button>
-  </div>;
+  </div>);
 };
 
-export function connectWithDuck(Component, Duck, extraMiddlewares = []) {
-  return function ConnectedWithDuck(props) {
-    const { duckRuntime, ConnectedComponent } = React.useMemo(() => {
-      const duckRuntime = new DuckRuntime(
-        new Duck(),
-        ...extraMiddlewares
-      );
 
-      const ConnectedComponent = duckRuntime.connectRoot()(Component);
-      return {
-        duckRuntime,
-        ConnectedComponent
-      };
-    }, []);
+const duckRuntime = new DuckRuntime(new MyDuck());
+const ConnectedC = duckRuntime.connectRoot()(DuckTest);
 
-    return (
-      <Provider store={duckRuntime.store}>
-        <ConnectedComponent {...props} />
-      </Provider>
-    );
-  };
-}
-
-const ConnectedComponent = connectWithDuck(DuckTest, MyDuck);
-
+const ConnectedComponent = () =>
+  <Provider store={duckRuntime.store}>
+    <ConnectedC />
+  </Provider>;
 export default ConnectedComponent;
