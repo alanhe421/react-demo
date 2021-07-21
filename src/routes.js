@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import user from './components/user/user';
 import { AgGridPage } from './components/ag-grid';
 import FormPage from './components/form/formPage';
@@ -25,6 +25,7 @@ const Routes = () => {
       <Route path="/xlsx" component={XlsxPage} />
       <Route path="/pro-table" component={ProTable} />
       <Route path="/table" component={TablePage} />
+      <Route path="/a" render={() => <Redirect to={'/duck'} />} />
       <Route path="/duck" component={DuckTest} />
       <Route path="/" component={HomePage} />
     </Switch>
