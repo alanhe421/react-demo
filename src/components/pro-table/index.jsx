@@ -20,6 +20,13 @@ for (let i = 0; i < 2; i += 1) {
     money: Math.floor(Math.random() * 2000) * i
   });
 }
+
+function renderOption() {
+  return <button onClick={() => this.setState({ spin: true })}>
+    open loading
+  </button>;
+}
+
 const columns = [
   {
     title: '标题',
@@ -58,14 +65,11 @@ const columns = [
     key: 'option',
     width: 120,
     valueType: 'option',
-    render: () => <button onClick={() => this.setState({ spin: true })}>
-      open loading
-    </button>
+    render: renderOption.bind(this)
   }
 ];
 
 class Table extends React.Component {
-
 
   constructor(props, context) {
     super(props, context);
@@ -75,7 +79,7 @@ class Table extends React.Component {
   }
 
   render() {
-    return <ConfigProvider direction="rtl">
+    return <ConfigProvider direction='rtl'>
       <ProTable
         columns={columns}
         rowKey='key'

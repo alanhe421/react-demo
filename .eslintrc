@@ -286,6 +286,12 @@
       {
         "max": 10
       }
-    ]
+    ],
+    "react/display-name": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
