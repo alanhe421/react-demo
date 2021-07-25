@@ -1,5 +1,6 @@
 {
   "parser": "babel-eslint",
+  "extends": "react-app",
   "env": {
     "browser": true,
     "node": true,
@@ -8,30 +9,33 @@
   "plugins": [
     "react"
   ],
+  "failOnError": false,
   "globals": {
     "__DEV__": true,
     "__PROD__": true,
     "__COMPONENT_DEVTOOLS__": false,
     "__WHY_DID_YOU_UPDATE__": false
   },
-  "ecmaFeatures": {
-    "jsx": true,
-    "arrowFunctions": true,
-    "destructuring": true,
-    "classes": true,
-    "defaultParams": true,
-    "blockBindings": true,
-    "modules": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "restParams": true,
-    "spread": true,
-    "forOf": true,
-    "generators": true,
-    "templateStrings": true,
-    "superInFunctions": true,
-    "experimentalObjectRestSpread": true
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "arrowFunctions": true,
+      "destructuring": true,
+      "classes": true,
+      "defaultParams": true,
+      "blockBindings": true,
+      "modules": true,
+      "objectLiteralComputedProperties": true,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
+      "restParams": true,
+      "spread": true,
+      "forOf": true,
+      "generators": true,
+      "templateStrings": true,
+      "superInFunctions": true,
+      "experimentalObjectRestSpread": true
+    }
   },
   "rules": {
     "accessor-pairs": 2,

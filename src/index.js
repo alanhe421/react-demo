@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { applyMiddleware, compose, createStore } from 'redux';
 import Provider from 'react-redux/es/components/Provider';
-import 'antd/dist/antd.css';
 import './App.css';
 import rootReducer from './reducers';
 import createSagaMiddleware from 'redux-saga';
@@ -48,8 +47,8 @@ sagaMiddleware.run(mySaga);
 
 moment.tz.setDefault('America/Jujuy');
 
-const render = (root) => ReactDOM.render(
-  <Provider store={store}>
+function getProvider() {
+  return <Provider store={store}>
     <DndProvider backend={HTML5Backend}>
       <BrowserRouter>
         <main>
@@ -70,15 +69,11 @@ const render = (root) => ReactDOM.render(
             <Link to={'/table'}>
               table
             </Link>
-            <Link to={'/saga'}>
-              Saga
+            <Link to={'/duck'}>
+              Duck Test
             </Link>
           </nav>
           <div>
-            <button onClick={() => this.setState({
-              theme: this.state.theme === 'dark' ? 'light' : 'dark'
-            })}>toggle light/dark
-            </button>
             <ErrorBoundary>
               <Routes />
             </ErrorBoundary>
@@ -86,7 +81,11 @@ const render = (root) => ReactDOM.render(
         </main>
       </BrowserRouter>
     </DndProvider>
-  </Provider>,
+  </Provider>;
+}
+
+const render = (root) => ReactDOM.render(
+  getProvider(),
   root
 );
 

@@ -11,7 +11,6 @@ function* fetchUserEffects(action) {
 }
 
 function* getNum() {
-  console.log(a.b);
   return yield 111;
 }
 

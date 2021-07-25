@@ -145,17 +145,18 @@ module.exports = {
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
-            include: paths.appSrc,
+            include:
+              [
+                paths.appSrc,
+                /\/node_modules\/saga-duck/,
+              ],
             loader: require.resolve('babel-loader'),
             options: {
-
               // This is a feature of `babel-loader` for webpack (not Babel itself).
               // It enables caching results in ./node_modules/.cache/babel-loader/
               // directory for faster rebuilds.
-              cacheDirectory: true,
-              plugins: [
-                'babel-plugin-redux-saga'
-              ]
+              configFile: './.babelrc.json',
+              cacheDirectory: true
             }
           },
           // "postcss" loader applies autoprefixer to our CSS.
