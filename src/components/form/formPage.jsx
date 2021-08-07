@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { Button, Select } from 'tea-component';
 
 const options = [
@@ -10,25 +10,38 @@ const options = [
 ];
 
 const FormPage = () => {
-  const { register, reset, control, getValues } = useForm();
+  const {
+    register, reset, control, getValues, formState: {
+      isValid
+    }
+  } = useForm({
+    defaultValues: {
+      fruit: 1
+    }
+  });
   const handleSubmit = useCallback(() => {
     console.log(getValues());
   }, []);
-  return <div><Controller
-    control={control}
-    defaultValue={1}
-    name={'name'}
-    render={({ field, fieldState, formState }) => <Select
-      style={{ width: 200 }}
-      placeholder="Select a person"
-      options={options}
-      {...field}
-    />}>
-  </Controller>
+  return <div><Select
+    style={{ width: 200 }}
+    placeholder="Select a person"
+    options={options}
+    {...register('fruit', {
+      valueAsNumber: true,
+      validate: (value => {
+        if (value === 1) {
+          console.log(value);
+          return '不能选择1';
+        }
+        return undefined;
+      })
+    })}
+  />
     <div>
       <Button onClick={handleSubmit}>submit</Button>
     </div>
-  </div>;
+  </div>
+    ;
 };
 
 export default FormPage;
