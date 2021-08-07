@@ -1,8 +1,14 @@
 import React, { useCallback } from 'react';
-import { Button, Select } from 'antd';
 import { Controller, useForm } from 'react-hook-form';
+import { Button, Select } from 'tea-component';
 
-const { Option } = Select;
+const options = [
+  { value: 1, text: '草莓', tooltip: '甜甜甜' },
+  { value: 2, text: '苹果', tooltip: '每日一苹果，医生远离我' },
+  { value: 3, text: '橙子', tooltip: '丰富 VC 含量' },
+  { value: 4, text: '榴莲', tooltip: '榴莲已售罄' }
+];
+
 const FormPage = () => {
   const { register, reset, control, getValues } = useForm();
   const handleSubmit = useCallback(() => {
@@ -10,17 +16,14 @@ const FormPage = () => {
   }, []);
   return <div><Controller
     control={control}
+    defaultValue={1}
     name={'name'}
     render={({ field, fieldState, formState }) => <Select
       style={{ width: 200 }}
       placeholder="Select a person"
-      optionFilterProp="children"
+      options={options}
       {...field}
-    >
-      <Option value={'1'}>Jack</Option>
-      <Option value={'2'}>Lucy</Option>
-      <Option value={'3'}>Tom</Option>
-    </Select>}>
+    />}>
   </Controller>
     <div>
       <Button onClick={handleSubmit}>submit</Button>
