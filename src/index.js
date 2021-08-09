@@ -72,6 +72,9 @@ function getProvider() {
             <Link to={'/duck'}>
               Duck Test
             </Link>
+            <Link to={'/hook'}>
+              Hook Test
+            </Link>
           </nav>
           <div>
             <ErrorBoundary>

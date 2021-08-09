@@ -11,6 +11,7 @@ import HomePage from './components/home/home';
 import ProTable from './components/pro-table';
 import TablePage from './components/table';
 import DuckTest from './components/duck-test/test';
+import HookTest from './components/hook';
 
 const description = 'hello world';
 const Routes = () => {
@@ -27,6 +28,7 @@ const Routes = () => {
       <Route path="/table" component={TablePage} />
       <Route path="/a" render={() => <Redirect to={'/duck'} />} />
       <Route path="/duck" component={DuckTest} />
+      <Route path="/hook" component={HookTest} />
       <Route path="/" component={HomePage} />
     </Switch>
   );
