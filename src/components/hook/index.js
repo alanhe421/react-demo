@@ -15,7 +15,7 @@ const HookTest = () => {
     </button>
 
     {
-      JSON.stringify(userList || null)
+      JSON.stringify(userList)
     }
   </>;
 };
