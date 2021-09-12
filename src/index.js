@@ -75,6 +75,9 @@ function getProvider() {
             <Link to={'/hook'}>
               Hook Test
             </Link>
+            <Link to={'/saga'}>
+              saga Test
+            </Link>
           </nav>
           <div>
             <ErrorBoundary>

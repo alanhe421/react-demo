@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchUserAction, testSaga } from '../../actions';
+import { fetchUserAction2, testSaga } from '../../actions';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 import SagaChildren from './saga-children';
@@ -30,13 +30,16 @@ class SagaTestPage extends Component {
         <Button onClick={() =>
           this.props.fetchUserAction(++count)
         }>test render{this.state.number}</Button>
-        <SagaChildren/>
+        <SagaChildren />
       </div>
     );
   }
 
   componentDidMount() {
-    this.props.fetchUserAction(++count);
+    this.props.fetchUserAction2(++count).then(res => {
+      console.log(res);
+    });
+
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -56,7 +59,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   testSaga,
-  fetchUserAction
+  fetchUserAction2
 };
 
 export default connect(
