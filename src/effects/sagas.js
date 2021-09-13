@@ -29,9 +29,6 @@ function* testExceptionEffects2(action) {
 }
 
 function* mySaga() {
-
-  console.log(fetchUserAction2(111));
-
   yield takeLeading(fetchUserAction2, testExceptionEffects2);
   yield takeLatest('USER_FETCH', fetchUserEffects);
 }

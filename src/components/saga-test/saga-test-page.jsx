@@ -36,10 +36,11 @@ class SagaTestPage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchUserAction2(++count).then(res => {
+    const fetchUserAction = this.props.fetchUserAction2(++count);
+    console.log(fetchUserAction);
+    fetchUserAction.then(res => {
       console.log(res);
     });
-
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
