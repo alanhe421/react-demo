@@ -78,6 +78,9 @@ function getProvider() {
             <Link to={'/saga'}>
               saga Test
             </Link>
+            <Link to={'/tea'}>
+              Tea Test
+            </Link>
           </nav>
           <div>
             <ErrorBoundary>
