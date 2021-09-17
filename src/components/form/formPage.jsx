@@ -15,30 +15,31 @@ const FormPage = () => {
       isValid
     }
   } = useForm({
-    defaultValues: {
-      fruit: 1
-    }
+    mode: 'all',
+    defaultValues: {}
   });
   const handleSubmit = useCallback(() => {
-    console.log(getValues());
+    debugger;
   }, []);
-  return <div><Select
-    style={{ width: 200 }}
-    placeholder="Select a person"
-    options={options}
-    {...register('fruit', {
-      valueAsNumber: true,
-      validate: (value => {
-        if (value === 1) {
-          console.log(value);
-          return '不能选择1';
-        }
-        return undefined;
-      })
-    })}
-  />
+  return <div>
+    <Select
+      style={{ width: 200 }}
+      placeholder="Select a fruit"
+      options={options}
+      {...register('fruit', {
+        validate: (value => {
+          if (value === null || value === undefined) {
+            return '不能为空';
+          }
+          if (+value === 1) {
+            return '不能选择草莓';
+          }
+          return undefined;
+        })
+      })}
+    />
     <div>
-      <Button onClick={handleSubmit}>submit</Button>
+      <Button onClick={handleSubmit} disabled={!isValid}>submit</Button>
     </div>
   </div>
     ;
