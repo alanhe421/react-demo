@@ -3,6 +3,7 @@ import Children from './children';
 import { CardToc } from './card-toc';
 import { Button } from 'antd';
 import listCacheGet from 'lodash-es/_listCacheGet';
+import { qs } from '../../utils';
 
 class home extends React.Component {
 
@@ -26,6 +27,14 @@ class home extends React.Component {
     return <h1>home-111
       111113&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <CardToc />
+    <div>
+      {
+        qs.stringify({
+          a: 1,
+          b: 2
+        })
+      }
+    </div>
       {
         Boolean(this.state.flag) && <>view flag<Button onClick={() => {
           this.setState({

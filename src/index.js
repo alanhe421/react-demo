@@ -15,7 +15,6 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import './config/axios';
 import { promiseMiddleware } from '@adobe/redux-saga-promise';
-import * as moment from 'moment';
 import 'moment-timezone';
 import ErrorBoundary from './components/base/error-boundary';
 import { BrowserRouter, Link } from 'react-router-dom';
@@ -45,7 +44,7 @@ const middleWares = [promiseMiddleware, sagaMiddleware, thunk, routerMiddleware(
 const store = createStore(rootReducer(history), compose(applyMiddleware(...middleWares), reduxDevtools));
 sagaMiddleware.run(mySaga);
 
-moment.tz.setDefault('America/Jujuy');
+// moment.tz.setDefault('America/Jujuy');
 
 function getProvider() {
   return <Provider store={store}>
@@ -80,6 +79,9 @@ function getProvider() {
             </Link>
             <Link to={'/tea'}>
               Tea Test
+            </Link>
+            <Link to={'/menu'}>
+              Menu Test
             </Link>
           </nav>
           <div>

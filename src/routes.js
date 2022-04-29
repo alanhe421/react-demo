@@ -13,6 +13,7 @@ import TablePage from './components/table';
 import DuckTest from './components/duck-test/test';
 import HookTest from './components/hook';
 import TeaTableTest from './components/tea';
+import MenuTest from './components/menu';
 
 const description = 'hello world';
 const Routes = () => {
@@ -31,6 +32,7 @@ const Routes = () => {
       <Route path="/duck" component={DuckTest} />
       <Route path="/hook" component={HookTest} />
       <Route path="/tea" component={TeaTableTest} />
+      <Route path="/menu" component={MenuTest} />
       <Route path="/" component={HomePage} />
     </Switch>
   );
