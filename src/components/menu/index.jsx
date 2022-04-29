@@ -14,27 +14,24 @@ const MenuTest = () => {
 
   function handleContextMenu(event) {
     event.preventDefault();
+    console.log(event);
     show(event, {
       props: {
-        key: 'value'
+        key: event.target.dataset.id
       }
     });
   }
 
-  const handleItemClick = ({ event, props }) => console.log(event, props);
+  const handleItemClick = ({ event, props }) => {
+    console.log(props);
+  };
 
   return <div>
-    <p data-id='1' onContextMenu={handleContextMenu}>lorem ipsum blabladhasi blaghs blah</p>
+    <p data-id='1' onContextMenu={handleContextMenu}>node1</p>
+    <p data-id='2' onContextMenu={handleContextMenu}>node2</p>
     <Menu id={MENU_ID}>
-      <Item onClick={handleItemClick}>Item 1</Item>
-      <Item onClick={handleItemClick}>Item 2</Item>
-      <Separator />
-      <Item disabled>Disabled</Item>
-      <Separator />
-      <Submenu label='Foobar'>
-        <Item onClick={handleItemClick}>Sub Item 1</Item>
-        <Item onClick={handleItemClick}>Sub Item 2</Item>
-      </Submenu>
+      <Item onClick={handleItemClick}>上传</Item>
+      <Item onClick={handleItemClick}>下载</Item>
     </Menu>
   </div>;
 };
