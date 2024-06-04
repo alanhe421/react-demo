@@ -4,33 +4,27 @@
 import React, { useEffect, useState } from 'react';
 import { useRequest } from 'ahooks';
 import { getUserInfos } from '../../api';
+import { Button } from 'antd';
 
 const HookTest = () => {
-  const [type, setType] = useState('boy');
-  const { userList } = useFetchUserList(type);
-  return <>
-    'hello world'
-    <button onClick={() => setType('girl')}>
-      click
-    </button>
+  const [num1, setNum1] = useState(100);
+  const [num2, setNum2] = useState(200);
 
-    {
-      JSON.stringify(userList)
-    }
+  useEffect(() => {
+    console.log('num1', num1, 'num2', num2);
+  }, [num1]);
+  return <>
+    <Button onClick={() => {
+      setNum1(n => n + 1);
+    }}>
+      Num1+1
+    </Button>
+    <Button onClick={() => {
+      setNum2(n => n + 1);
+    }}>
+      Num2+1
+    </Button>
   </>;
 };
-
-// 对于type，无论是基本数据类型还是对象类型，都会是最新值
-function useFetchUserList() {
-  const { loading, run, data } = useRequest(getUserInfos, {
-    manual: false
-  });
-
-  return {
-    run,
-    userList: data,
-    loading
-  };
-}
 
 export default HookTest;
