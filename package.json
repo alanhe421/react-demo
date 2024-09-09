@@ -25,6 +25,7 @@
     "@adobe/redux-saga-promise": "^1.0.0",
     "@ant-design/pro-table": "^1.2.9",
     "@babel/core": "7.6.0",
+    "@babel/plugin-transform-react-jsx": "^7.25.2",
     "@babel/polyfill": "^7.12.1",
     "ag-grid-community": "^21.0.1",
     "ag-grid-react": "^21.0.1",
