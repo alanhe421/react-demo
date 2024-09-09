@@ -20,6 +20,7 @@ import ErrorBoundary from './components/base/error-boundary';
 import { BrowserRouter, Link } from 'react-router-dom';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { createLogger } from 'redux-logger';
 
 const effectMiddleware = next => effect => {
   // if (effect.type === 'FORK') {
@@ -39,7 +40,9 @@ export const history = createBrowserHistory();
 
 const reduxDevtools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f;
 
-const middleWares = [promiseMiddleware, sagaMiddleware, thunk, routerMiddleware(history)];
+const logMiddlewares = process.env.NODE_ENV === 'development' ? [createLogger({ collapsed: true })] : [];
+
+const middleWares = [promiseMiddleware, sagaMiddleware, thunk, routerMiddleware(history), ...logMiddlewares];
 
 const store = createStore(rootReducer(history), compose(applyMiddleware(...middleWares), reduxDevtools));
 sagaMiddleware.run(mySaga);
